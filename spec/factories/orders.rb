@@ -8,4 +8,5 @@ FactoryBot.define do
     how_to_pay { 0 }
     status { 0 }
   end
+  
 end

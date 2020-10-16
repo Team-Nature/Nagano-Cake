@@ -8,7 +8,7 @@
       <td>
         <%= form_with model: @order, url: admin_order_path(@order), local: true do |f| %>
           <%= f.select :status, options_for_select([ "入金待ち", "入金確認", "製作中", "発送準備中", "発送済み"], selected: @order.status ) %>
-          <%= f.submit "更新", class: "btn btn-primary" %>
+          <%= f.submit "更新", class: "btn btn-primary update-order-status" %>
         <% end %>
       </td>
     </tr>
@@ -30,7 +30,7 @@
           <td>
             <%= form_with model: order_item, url: admin_order_item_path(order_item), local: true do |f| %>
               <%= f.select :status, options_for_select(["着手不可", "製作待ち", "製作中", "製作完了"], order_item.status) %>
-              <%= f.submit "更新", class: "btn btn-primary" %>
+              <%= f.submit "更新", class: "btn btn-primary update-make-status" %>
             <% end %>
           </td>
         </tr>
