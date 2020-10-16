@@ -1,0 +1,19 @@
+<section class="customer-index">
+  <h3>会員一覧</h3>
+  <table class="table">
+    <thead>
+      <tr><th>会員ID</th><th>氏名</th><th>メールアドレス</th><th>ステータス</th></tr>
+    </thead>
+    <tbody>
+      <% @customers.each do |customer| %>
+        <tr>
+          <td><%= customer.id %></td>
+          <td><%= link_to customer.full_name, admin_customer_path(customer) %></td>
+          <td><%= customer.email %></td>
+          <td><%= customer.status %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <!--kaminari / will_paginate -->
+</section>

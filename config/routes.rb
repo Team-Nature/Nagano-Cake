@@ -6,7 +6,10 @@ Rails.application.routes.draw do
   devise_for :customers
   end
 
-  root 'homes#top'
+  scope module: :public do
+    root 'homes#top'
+  end
+  
   get 'home/about' => 'homes#about', as: 'about'
   get 'admins' => 'admins#top'
 
@@ -50,6 +53,10 @@ Rails.application.routes.draw do
 
   #配送先
   resources :deliveries, only: [:index, :create, :destroy, :edit, :update]
+  
+  namespace :admin do
+    resources :categories
+  end
 
 
 

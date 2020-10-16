@@ -14,5 +14,21 @@ class Customer < ApplicationRecord
   validates :postcode, presence: true, format: { with: /\d{7}/ }
   validates :address, presence: true
   validates :tel, presence: true
-  validates :is_active, presence: true, inclusion: { in: [true, false] }
+  validates :is_active, inclusion: { in: [true, false] }
+  
+  def full_name
+    self.last_name + " " + self.first_name
+  end
+  
+  def full_name_kana
+    self.last_name_kana + " " + self.first_name_kana
+  end
+  
+  def status
+    if self.is_active
+      "有効"
+    else
+      "退会"
+    end
+  end
 end

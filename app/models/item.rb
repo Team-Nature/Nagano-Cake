@@ -7,6 +7,6 @@ class Item < ApplicationRecord
   validates :image_id, presence: true
   validates :description, presence: true
   validates :price, presence: true, numericality: true
-  validates :is_active, presence: true, inclusion: { in: [true, false] }
+  validates :is_active, inclusion: { in: [true, false] }
     
 end

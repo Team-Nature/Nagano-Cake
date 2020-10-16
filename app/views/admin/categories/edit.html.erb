@@ -1,0 +1,12 @@
+<section class="category-edit">
+  <h3>ジャンル編集</h3>
+  <%= form_with model: @category, url: admin_category_path(@category), local: true do |f| %>
+     <%= f.label :name %>
+     <%= f.text_field :name %>
+     <%= f.radio_button :is_active, true %>
+     <%= f.label :is_active, "有効", value: :true %>
+     <%= f.radio_button :is_active, false %>
+     <%= f.label :is_active, "無効", value: :false %>
+     <%= f.submit "変更を保存する", class: "btn btn-primary" %>
+  <% end %>
+</section>
