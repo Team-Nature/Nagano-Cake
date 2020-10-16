@@ -126,7 +126,7 @@ RSpec.describe "Orders", type: :system do
         select "製作中", from: "find_all(order_item[status])[0]"
         click_button "find_all(更新)[0]"
         expect(current_path).to eq admin_order_path(order1)
-        expect(page).to have_select("find_all(order[status])[0]", selected: "製作中"")
+        expect(page).to have_select("find_all(order[status])[0]", selected: "製作中")
       end
     end
   end
