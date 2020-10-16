@@ -22,4 +22,24 @@ class Order < ApplicationRecord
       order_item.save
     end
   end
+  
+  def get_total_price
+    total_price = 0
+    self.order_items.each do |item|
+      subtotal = item.amount * item.price
+      total_price += subtotal
+    end
+    total_price
+  end
+  
+  def get_whole_total_price
+  end
+  
+  def count_items
+    count = 0
+    self.order_items.each do |item|
+      count += item.amount
+    end
+    count
+  end
 end

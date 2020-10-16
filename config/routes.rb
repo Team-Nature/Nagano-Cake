@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   devise_for :customers
 
   namespace :admin do  #管理者ログイン
-  devise_for :customers
+    resources :order_items, only: [:update]
+    devise_for :customers
   end
 
   scope module: :public do
@@ -35,7 +36,7 @@ Rails.application.routes.draw do
 
   #注文
   namespace :admin do
-  resources :orders, only: [:index, :show, :update]
+    resources :orders, only: [:index, :show, :update]
   end
 
   scope module: :public do
@@ -57,7 +58,6 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :categories
   end
-
 
 
 

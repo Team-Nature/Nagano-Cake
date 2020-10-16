@@ -8,5 +8,7 @@ class OrderItem < ApplicationRecord
   validates :amount, presence: true, numericality: true
   validates :status, presence: true, inclusion: { in: ["着手不可", "製作待ち", "製作中", "製作完了"] }
   
-
+  def subtotal
+    self.price * self.amount
+  end
 end

@@ -23,7 +23,6 @@ class Admin::CategoriesController < ApplicationController
   def update
     @category = Category.find(params[:id])
     @category.update(category_params)
-    debugger
     redirect_to new_admin_category_path
   end
   
