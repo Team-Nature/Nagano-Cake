@@ -2,15 +2,15 @@
   <nav class="navbar navbar-default">
     <div class="navbar-header">
       <%= link_to "LOGO", root_path, class: "navbar-brand" %>
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-header">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
       </button>
     </div>
     <% if customer_signed_in? %>
-      <p class="text-center">ようこそ、xxxさん！</p>
+      <p class="text-center">ようこそ、<%= customer.full_name %>さん！</p>
     <% end %>
-    <div class="collapse navbar-collapse">
+    <div class="collapse navbar-collapse" id="navbar-header">
       <ul class="nav navbar-nav navbar-right">
         <% if customer_signed_in? %>
           <li><%= link_to "マイページ", customer_path(current_customer) %></li>

@@ -7,4 +7,28 @@ FactoryBot.define do
     price { 400 }
     is_active { true }
   end
+  factory :item2, class: Item do
+    category_id { 2 }
+    name { "すこーん" }
+    image_id { "image" }
+    description { "お土産に" }
+    price { 300 }
+    is_active { true }
+  end
+  factory :item3, class: Item do
+    category_id { 3 }
+    name { "ぷりんぷりん" }
+    image_id { "image" }
+    description { "デザートに" }
+    price { 200 }
+    is_active { true }
+  end
+  factory :item4, class: Item do
+    category_id { 4 }
+    name { "あいすきゃんでぃ" }
+    image_id { "image" }
+    description { "夏に" }
+    price { 100 }
+    is_active { true }
+  end
 end

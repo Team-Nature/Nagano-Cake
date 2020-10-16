@@ -64,7 +64,7 @@ RSpec.describe "AdminCustomers", type: :system do
         expect(page).to have_link "注文履歴一覧を見る", href: admin_orders_path
       end
     end
-    context "on admin_customer_editing page" do
+    context "on admin_customer_edit page" do
       before do
         visit edit_admin_customer_path(customer1)
       end
@@ -97,6 +97,29 @@ RSpec.describe "AdminCustomers", type: :system do
       it "has button to update customer_info" do
         expect(page).to have_button "変更を保存する"
       end
+      it "updates customer information" do
+        fill_in "customer[last_name]", with: "峰"
+        fill_in "customer[first_name]", with: "夕"
+        fill_in "customer[last_name_kana]", with: "みね"
+        fill_in "customer[first_name_kana]", with: "ゆう"
+        fill_in "customer[postcode]", with: "0009999"
+        fill_in "customer[address]", with: "沖縄県那覇市"
+        fill_in "customer[tel]", with: "99999999999"
+        fill_in "customer[email]", with: "mine@com"
+        choose "退会"
+        click_button "変更を保存する"
+        expect(current_path).to eq admin_customer_path(custoemr1)
+        expect(page).to have_content "峰"
+        expect(page).to have_content "夕"
+        expect(page).to have_content "みね"
+        expect(page).to have_content "ゆう"
+        expect(page).to have_content "0009999"
+        expect(page).to have_content "沖縄県那覇市"
+        expect(page).to have_content "99999999999"
+        expect(page).to have_content "mine@com"
+        expect(page).to have_checked_field ""
+      end
+
     end
   end
 end

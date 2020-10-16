@@ -33,6 +33,7 @@ class Order < ApplicationRecord
   end
   
   def get_whole_total_price
+    self.total_price + self.deliver_fee
   end
   
   def count_items

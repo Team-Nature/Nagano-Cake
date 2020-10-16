@@ -1,18 +1,21 @@
+<div class="col-md-10 col-md-offset-1">
 <section class="customer-edit">
-  <table>
+  <h3><span style="background-color: gray;"><%= @customer.first_name %><%= @customer.last_name %>の会員情報編集</span></h3>
     <%= form_with model: @customer, url: admin_customer_path(@customer), local: true do |f| %>
-      <tr><th>会員ID</th><td><%= @customer.id %></td></tr>
-      <tr><th>氏名</th><td><%= f.text_field :last_name %></td><td><%= f.text_field :first_name %></td></tr>
-      <tr><th>フリガナ</th><td><%= f.text_field :last_name_kana %></td><td><%= f.text_field :first_name_kana %></td></tr>
-      <tr><th>郵便番号</th><td><%= f.text_field :postcode %></td></tr>
-      <tr><th>住所</th><td><%= f.text_field :address %></td></tr>
-      <tr><th>メールアドレス</th><td><%= f.text_field :email %></td></tr>
-      <tr><th>会員ステータス</th><td><%= f.radio_button :is_active, true %><%= f.label :is_active, "有効", value: true %></td>
-        <td><%= f.radio_button :is_active, false %><%= f.label :is_active, "退会済み", value: false %></td>
-      </tr>
+      <div class="row">
+        <p class="col-md-2">会員ID</p><p class="col-md-10"><%= @customer.id %></p>
+      </div>
+      <div class="row">
+      <p class="col-md-2">氏名</p><p class="col-md-10"><%= f.text_field :last_name %> <%= f.text_field :first_name %></p>
+      <p class="col-md-2">フリガナ</p><p class="col-md-10"><%= f.text_field :last_name_kana %> <%= f.text_field :first_name_kana %></p>
+      <p class="col-md-2">郵便番号</p><p class="col-md-10"><%= f.text_field :postcode %></p>
+      <p class="col-md-2">住所</p><p class="col-md-10"><%= f.text_field :address %></p>
+      <p class="col-md-2">メールアドレス</p><p class="col-md-10"><%= f.text_field :email %></p>
+      <p class="col-md-2">会員ステータス</p><p class="col-md-10"><%= f.radio_button :is_active, true %><%= f.label :is_active, "有効", value: true %><span>&emsp;</span><%= f.radio_button :is_active, false %><%= f.label :is_active, "退会済み", value: false %></p>
       <tr>
         <th><%= f.submit "変更を保存する", class: "btn btn-primary" %></th>
       </tr>
     <% end %>
   </table>
 </section>
+</div>

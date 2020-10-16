@@ -5,9 +5,12 @@ RSpec.describe "Orders", type: :system do
     let(:admin1){ create(:admin1) }
     let(:customer1){ create(:customer1) }
     let(:customer2){ create(:customer2) }
-    let(:item1){ create(:item1) }
-    let(:item2){ create(:item2) }
-    let(:item3){ create(:item3) }
+    let(:category1){ create(:category1) }
+    let(:category2){ create(:category2) }
+    let(:category3){ create(:category3) }
+    let(:item1){ create(:item1, category: category1) }
+    let(:item2){ create(:item2, category: category2) }
+    let(:item3){ create(:item3, category: category3) }
     before do
       @cart_item1 = customer1.cart_items.create(item: item1, amount: 1)
       @cart_item2 = customer1.cart_items.create(item: item2, amount: 2)
@@ -112,6 +115,18 @@ RSpec.describe "Orders", type: :system do
       end
       it "has '請求金額合計'" do
         expect(page).to have_content order1.whole_total_price
+      end
+      it "changes order_status" do
+        select "発送済み", from: "order[status]"
+        click_button "update-order-status"
+        expect(current_path).to eq admin_order_parh(order1)
+        expect(page).to have_select("order[status]", selected: "発送済み")
+      end
+      it "changes order_item_status" do
+        select "製作中", from: "find_all(order_item[status])[0]"
+        click_button "find_all(更新)[0]"
+        expect(current_path).to eq admin_order_path(order1)
+        expect(page).to have_select("find_all(order[status])[0]", selected: "製作中"")
       end
     end
   end
