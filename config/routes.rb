@@ -3,10 +3,14 @@ Rails.application.routes.draw do
   devise_for :customers
 
   namespace :admin do  #管理者ログイン
-  devise_for :customers
+    resources :order_items, only: [:update]
+    devise_for :customers
   end
 
-  root 'homes#top'
+  scope module: :public do
+    root 'homes#top'
+  end
+  
   get 'home/about' => 'homes#about', as: 'about'
   get 'admins' => 'admins#top'
 
@@ -32,7 +36,7 @@ Rails.application.routes.draw do
 
   #注文
   namespace :admin do
-  resources :orders, only: [:index, :show, :update]
+    resources :orders, only: [:index, :show, :update]
   end
 
   scope module: :public do
@@ -50,7 +54,10 @@ Rails.application.routes.draw do
 
   #配送先
   resources :deliveries, only: [:index, :create, :destroy, :edit, :update]
-
+  
+  namespace :admin do
+    resources :categories
+  end
 
 
 

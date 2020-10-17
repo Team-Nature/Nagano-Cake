@@ -12,4 +12,32 @@ FactoryBot.define do
     tel { "01234567890" }
     is_active { true }
   end
+  
+    factory :customer2, class: Customer do
+    last_name { "森" }
+    first_name { "林" }
+    last_name_kana { "もり" }
+    first_name_kana { "りん" }
+    email { "rin@com" }
+    password { "testtest" }
+    password_confirmation { "testtest" }
+    postcode { "2222222" }
+    address { "大阪府" }
+    tel { "01234567890" }
+    is_active { true }
+  end
+  
+    factory :customer3, class: Customer do
+    last_name { "川" }
+    first_name { "羽" }
+    last_name_kana { "かわ" }
+    first_name_kana { "はね" }
+    email { "kawa@com" }
+    password { "testtest" }
+    password_confirmation { "testtest" }
+    postcode { "3333333" }
+    address { "兵庫県" }
+    tel { "01234567890" }
+    is_active { true }
+  end
 end
