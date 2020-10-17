@@ -88,5 +88,13 @@ RSpec.describe "Orders", type: :system do
         expect(current_path).to eq orders_thanks_path
       end
     end
+    context "on order-thanks page" do
+      before do 
+        orders_thanks_page
+      end
+      it "has 'ご購入ありがとうございました！" do
+        expect(page).to have_content "ご購入ありがとうございました！"
+      end
+    end
   end
 end
