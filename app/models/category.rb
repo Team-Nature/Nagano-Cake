@@ -3,4 +3,12 @@ class Category < ApplicationRecord
     
     validates :name, presence: true
     validates :is_active, inclusion: { in: [true, false] }
+    
+    def status
+        if is_active
+            "有効"
+        else
+            "無効"
+        end
+    end
 end
