@@ -11,7 +11,10 @@ Rails.application.routes.draw do
     root 'homes#top'
   end
   
-  get 'home/about' => 'homes#about', as: 'about'
+  scope module: :public do
+   get 'home/about' => 'homes#about', as: 'about'
+  end
+  
   get 'admins' => 'admins#top'
 
   #顧客
@@ -60,3 +63,4 @@ Rails.application.routes.draw do
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
+
