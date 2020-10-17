@@ -24,6 +24,7 @@ class Admin::CategoriesController < ApplicationController
     @category = Category.find(params[:id])
     @category.update(category_params)
     redirect_to new_admin_category_path
+    debugger
   end
   
   private
