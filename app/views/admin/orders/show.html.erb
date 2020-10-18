@@ -31,8 +31,8 @@
               <td><%= order_item.amount %></td>
               <td><%= order_item.subtotal %></td>
               <%= form_with model: order_item, url: admin_order_item_path(order_item), local: true do |f| %>
-                <td><%= f.select :status, options_for_select(["着手不可", "製作待ち", "製作中", "製作完了"], order_item.status) %></td>
-                <td><%= f.submit "更新", class: "btn btn-primary update-make-status" %></td>
+                <td><%= f.select :status, options_for_select(["着手不可", "製作待ち", "製作中", "製作完了"], order_item.status), {}, { id: "order-item-#{ order_item.id }-status"} %></td>
+                <td><%= f.submit "更新", class: "btn btn-primary update-make-status", id: "update-#{ order_item.id }" %></td>
               <% end %>
             </tr>
           <% end %>

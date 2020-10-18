@@ -3,4 +3,8 @@ class CartItem < ApplicationRecord
   belongs_to :item
     
   validates :amount, presence: true, numericality: true
+  
+  def subtotal
+    (self.price * 1.1) * self.amount
+  end
 end
