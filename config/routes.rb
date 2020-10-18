@@ -12,10 +12,12 @@ Rails.application.routes.draw do
   end
   
   scope module: :public do
-   get 'home/about' => 'homes#about', as: 'about'
+    get "/about" => "homes#about", as: "about"
   end
   
-  get 'admins' => 'admins#top'
+  namespace :admin do 
+    get '' => 'admins#top', as: "top"
+  end
 
   #顧客
   namespace :admin do
@@ -23,10 +25,13 @@ Rails.application.routes.draw do
   end
 
   scope module: :public do
-  resources :customers, only: [:show, :edit, :update]
+    resource :customers, only: [:show, :edit, :update]
   end
-  get 'customers/:id/quit' => 'customers#quit', as: 'quit' #退会画面表示
-  patch 'cart_items/:id/out' => 'cart_items#out', as: 'out' #退会処理
+  
+  scope module: :public do
+    get 'customers/quit' => 'customers#quit', as: 'quit' #退会画面表示
+    patch 'customers/out' => 'customres#out', as: 'out' #退会処理
+  end
 
   #商品
   namespace :admin do
@@ -43,23 +48,25 @@ Rails.application.routes.draw do
   end
 
   scope module: :public do
-  resources :orders, only: [:new, :create, :index, :show]
+    resources :orders, only: [:new, :create, :index, :show]
+    post 'orders/log' => 'orders#log', as: 'log' #注文情報表示
+    get 'orders/thanks' => 'orders#thanks', as: 'thanks' #注文完了ページ
   end
-  post 'orders/log' => 'orders#log', as: 'log' #注文情報表示
-  get 'orders/thanks' => 'orders#thanks', as: 'thanks' #注文完了ページ
-  patch 'orders/:order_id/order_items/:id' => 'order_items#update' #商品の制作ステータスの更新
-
 
 #会員ページONLY
   #カート商品
-  resources :cart_items, only: [:index, :update, :create, :destroy]
-  delete 'cart_items' => 'cart_items#destroy_all' #カート商品を空にする
+  scope module: :public do
+    resources :cart_items, only: [:index, :update, :create, :destroy]
+    delete 'cart_items' => 'cart_items#destroy_all' #カート商品を空にする
+  end
 
   #配送先
-  resources :deliveries, only: [:index, :create, :destroy, :edit, :update]
+  scope module: :public do
+    resources :deliveries, only: [:index, :create, :destroy, :edit, :update]
+  end
   
   namespace :admin do
-    resources :categories
+    resources :categories, only: [:new, :create, :edit, :update]
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

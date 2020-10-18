@@ -38,7 +38,7 @@ RSpec.describe "Headers", type: :system do
         expect(page).to have_link "カート", href: cart_items_path
       end
       it "has 'ログアウト'" do
-        expect(page).to have_link "ログアウト", href: customer_session_path
+        expect(page).to have_link "ログアウト", href: destroy_customer_session_path
       end
     end
     context "on header when logged in as an admin" do
@@ -61,7 +61,7 @@ RSpec.describe "Headers", type: :system do
         expect(page).to have_link "ジャンル一覧", href: admin_categories_path
       end
       it "has ログアウト" do
-        expect(page).to have_link "ログアウト", href: admin_path
+        expect(page).to have_link "ログアウト", href: destroy_admin_session_path
       end
     end
   end
