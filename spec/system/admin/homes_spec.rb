@@ -33,7 +33,7 @@ RSpec.describe "Homes", type: :system do
       it "has counts of today's orders" do
       end
       it "has items-index" do
-        expect(page).to have_link "商品一覧", href: admin_itens_path
+        expect(page).to have_link "商品一覧", href: admin_items_path
       end
       it "has customers-index" do
         expect(page).to have_link "会員一覧", href: admin_customers_path
