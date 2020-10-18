@@ -56,7 +56,7 @@ RSpec.describe "Homes", type: :system do
         expect(page).to have_field "customer[email]"
       end
       it "has field for postcode" do
-        expect(page).to have_content "郵便番号(ハイフンなし)"
+        expect(page).to have_content "郵便番号ハイフンなし)"
         expect(page).to have_field "customer[postcode]"
       end
       it "has field for address" do
@@ -82,7 +82,7 @@ RSpec.describe "Homes", type: :system do
         expect(page).to have_content "既に登録済みの方"
       end
       it "has link to go to session_path" do
-        expect(page).to have_link "こちら", href: new_customer_registration_path
+        expect(page).to have_link "こちら", href: new_customer_session_path
       end
       it "succeeds to make a new user" do
         fill_in "customer[last_name]", with: "山田"
@@ -96,11 +96,11 @@ RSpec.describe "Homes", type: :system do
         fill_in "customer[password]", with: "testtest"
         fill_in "customer[password_confirmation]", with: "testtest"
         click_button "新規登録"
-        expect(current_path).to eq new_customer_session_path
+        expect(current_path).to eq customer_path
       end
       it "fails to make a customer" do
         click_button "新規登録"
-        expect(current_path).to eq new_customer_administartion_path
+        expect(current_path).to eq new_customer_registration_path
         expect(page).to have_content "error"
       end
     end

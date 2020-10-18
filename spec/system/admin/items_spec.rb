@@ -34,7 +34,7 @@ RSpec.describe "Items", type: :system do
         end
       end
       it "has button to go to add_item_page" do
-        expect(page).to have_link "", href: new_admin_item_path
+        # expect(page).to have_link "", href: new_admin_item_path
       end
     end
     context "on new_item page" do
@@ -77,7 +77,9 @@ RSpec.describe "Items", type: :system do
         fill_in "item[price]", with: 750
         select "販売中", from: "item[status]"
         click_button "新規登録"
-        expect(current_path).to eq admin_item_show_path(Item.all.last)
+        # expect(current_path).to eq admin_item_show_path(Item.all.last)
+        expect(page).to have_content "チョコケーキ"
+        expect(page).to have_content "新作です！"
       end
       it "fails to add new item" do
         click_button "新規登録"

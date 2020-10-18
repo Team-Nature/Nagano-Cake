@@ -55,6 +55,13 @@ RSpec.describe "Items", type: :system do
       it "has item name" do
         expect(page).to have_content item1.name
       end
+      it "leads to item-show page when clicking image" do
+        Items.all.each do |item|
+          expect(page).to have_link "", href: item_path(item)
+        end
+        click_link "", href: item_path(item1)
+        expect(current_path).to eq item_path(item1)
+      end
       it "has description" do
         expect(page).to have_content item1.description
       end
@@ -68,10 +75,10 @@ RSpec.describe "Items", type: :system do
         expect(page).to have_button "カートに入れる"
       end
       it "puts some items in a cart" do
-        select 2, from: "item[amount"
+        select 2, from: "item[amount]"
         click_button "カートに入れる"
         expect(current_path).to eq cart_items_path
-        expect(page).to have_content "item1.name"
+        expect(page).to have_content item1.name
       end
     end
   end

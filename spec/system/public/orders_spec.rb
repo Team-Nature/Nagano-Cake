@@ -34,6 +34,12 @@ RSpec.describe "Orders", type: :system do
       it "has button to order-log page" do
         expect(page).to have_button "確認画面へ進む"
       end
+      it "succeeds to go to order-log" do
+        choose "クレジットカード"
+        choose "ご自身の住所"
+        click_button "確認画面に進む"
+        expect(current_path).to eq orders_thanks_path
+      end
     end
     context "on order-log page" do
       before do
