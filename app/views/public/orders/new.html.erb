@@ -1,1 +1,18 @@
 <h1>注文情報入力</h1>
+
+<%= form_with :model => @orders, method: :post, local: true  do |f| %>
+
+<h3>支払い方法</h3>
+
+<div>
+<%= f.radio_button :how_to_pay, :"クレジットカード" %>
+<span>クレジットカード</span>
+</div>
+<div>
+<%= f.radio_button :how_to_pay, :"銀行振込" %>
+<span>銀行振り込み</span>
+</div>
+<% end %>
+
+<h3>お届け先</h3>
+
