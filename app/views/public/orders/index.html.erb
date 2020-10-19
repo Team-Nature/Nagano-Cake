@@ -1,1 +1,31 @@
-<h1>注文履歴</h1>
+<h1>注文履歴一覧</h1>
+<thead>
+    <tr>
+      <th>注文日</th>
+      <th>配送先</th>
+      <th>注文商品</th>
+      <th>支払金額</th>
+      <th>ステータス</th>
+      <th>注文詳細</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @orders.each do |order| %>
+    <tr>
+      <td><%= order.created_at %></td>
+      <td><%= order.deliver_address %></td>
+      <td>
+        <% @cart_items.each do |cart_item| %>
+        <%= cart_item.item_name %>
+        <% end %>
+      </td>
+      <td><%= order.total_price %></td>
+      <td><%= order.status %></td>
+
+  <!--注文履歴詳細へ-->
+      <td>
+        <%= link_to "表示する", order_path(@order), class: "btn-sm btn-success order_#{@order.id}" %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>

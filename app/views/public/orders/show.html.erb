@@ -1,1 +1,48 @@
+<<<<<<< HEAD
+<h1>注文履歴詳細</h1>
+<table class='table'>
+<h3>注文情報</h3>
+  <div class="field form-group col-xs-9">
+    <%= f.label :注文日, class: "col-sm-4 control-label" %>
+    <%= order.created_at %>
+  </div>
+
+  <div class="field form-group col-xs-12">
+    <%= f.label :配送先, class: "col-sm-3 control-label" %>
+    <%= order.deliver_address %>
+  </div>
+
+  <div class="field form-group col-xs-9">
+    <%= f.label :支払方法, class: "col-sm-4 control-label" %>
+    <%= order.how_to_pay %>
+  </div>
+  
+  <div class="field form-group col-xs-9">
+    <%= f.label :ステータス, class: "col-sm-4 control-label" %>
+    <%= order.status %>
+  </div>
+
+</table>
+
+
+<table class='float-right'>
+<h2>請求情報</h2>
+  <div class="field form-group col-xs-9">
+    <%= f.label :商品合計, class: "col-sm-4 control-label" %>
+    <%= @order.total_price %>
+  </div>
+
+  <div class="field form-group col-xs-12">
+    <%= f.label :配送料, class: "col-sm-3 control-label" %>
+    <%= @order.deliver_fee %>
+  </div>
+  
+  <div class="field form-group col-xs-9">
+    <%= f.label :ご請求額, class: "col-sm-4 control-label" %>
+    <%= @order.get_whole_total_price %>
+  </div>
+
+</table>
+=======
 <h1>注文履歴 show </h1>
+>>>>>>> 10e89da08724156e6c66bdec4126851e0a383dd9
