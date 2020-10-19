@@ -1,7 +1,11 @@
 class Public::CustomersController < ApplicationController
   
   def show
+<<<<<<< HEAD
     @customer = Customer.find(params[:id])
+=======
+   @customer = current_customer
+>>>>>>> 10e89da08724156e6c66bdec4126851e0a383dd9
   end
   
   def quit

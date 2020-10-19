@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :admins
-  devise_for :customers, path: "au"
+  devise_for :customers, path: "auth"
 
   namespace :admin do  #管理者ログイン
     resources :order_items, only: [:update]
