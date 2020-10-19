@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :admins
-  devise_for :customers
+  devise_for :customers, path: "au"
 
   namespace :admin do  #管理者ログイン
     resources :order_items, only: [:update]
@@ -10,12 +10,12 @@ Rails.application.routes.draw do
   scope module: :public do
     root 'homes#top'
   end
-  
+
   scope module: :public do
     get "/about" => "homes#about", as: "about"
   end
-  
-  namespace :admin do 
+
+  namespace :admin do
     get '' => 'admins#top', as: "top"
   end
 
@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   scope module: :public do
     resource :customers, only: [:show, :edit, :update]
   end
-  
+
   scope module: :public do
     get 'customers/quit' => 'customers#quit', as: 'quit' #退会画面表示
     patch 'customers/out' => 'customres#out', as: 'out' #退会処理
@@ -48,9 +48,9 @@ Rails.application.routes.draw do
   end
 
   scope module: :public do
+    get 'orders/thanks' => 'orders#thanks', as: 'thanks' #注文完了ページ
     resources :orders, only: [:new, :create, :index, :show]
     post 'orders/log' => 'orders#log', as: 'log' #注文情報表示
-    get 'orders/thanks' => 'orders#thanks', as: 'thanks' #注文完了ページ
   end
 
 #会員ページONLY
@@ -64,7 +64,7 @@ Rails.application.routes.draw do
   scope module: :public do
     resources :deliveries, only: [:index, :create, :destroy, :edit, :update]
   end
-  
+
   namespace :admin do
     resources :categories, only: [:new, :create, :edit, :update]
   end
