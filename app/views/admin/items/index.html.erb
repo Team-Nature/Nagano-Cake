@@ -1,0 +1,29 @@
+  <h1>商品一覧</h1>
+  <%= form_with model:@items, local: true do |f| %>
+  <table class='table'>
+  <thead>
+    <tr>
+      <th>商品ＩＤ</th>
+      <th>商品名</th>
+      <th>税抜価格</th>
+      <th>ジャンル</th>
+      <th>ステータス</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @items.each do |item| %>
+    <tr>
+      <td><%= item.id %></td>
+      <td><%= item.name %></td>
+      <td><%= item.price %></td>
+      <td><%= categories.name %></td>
+      <td><%= item.is_active %></td>
+    </tr>
+    <% end %>
+  </tbody>
+  </table>
+
+
+
+ </div>
+</div>
