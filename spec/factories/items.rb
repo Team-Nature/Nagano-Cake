@@ -13,7 +13,6 @@ FactoryBot.define do
     image_id { "image" }
     description { "お土産に" }
     price { 300 }
-    is_active { true }
   end
   factory :item3, class: Item do
     category_id { 3 }
@@ -21,7 +20,6 @@ FactoryBot.define do
     image_id { "image" }
     description { "デザートに" }
     price { 200 }
-    is_active { true }
   end
   factory :item4, class: Item do
     category_id { 4 }
@@ -29,6 +27,5 @@ FactoryBot.define do
     image_id { "image" }
     description { "夏に" }
     price { 100 }
-    is_active { true }
   end
 end

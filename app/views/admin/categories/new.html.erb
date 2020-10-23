@@ -27,7 +27,7 @@
           <% @categories.each do |category| %>
             <tr>
               <td><%= category.name %></td>
-              <td><%= category.is_active %></td>
+              <td><%= category.status %></td>
               <td><%= link_to "編集する", edit_admin_category_path(category), class: "btn btn-primary" %></td>
             </tr>
           <% end %>

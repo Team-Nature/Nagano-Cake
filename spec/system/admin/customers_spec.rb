@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "AdminCustomers", type: :system do
+RSpec.describe "Admin::Customers", type: :system do
   describe "about admin_customer page" do
     let(:customer1){ create(:customer1) }
     let(:admin1){ create(:admin1) }
@@ -12,7 +12,7 @@ RSpec.describe "AdminCustomers", type: :system do
     end
     context "on admin_customer_index page" do
       before do
-        visit admin_customer_path(customer1)
+        visit admin_customers_path
       end
       it "has '会員一覧'" do
         expect(page).to have_content "会員一覧"
@@ -42,16 +42,16 @@ RSpec.describe "AdminCustomers", type: :system do
       it "has heading for customer information" do
         expect(page).to have_content "顧客ID"
         expect(page).to have_content "氏名"
-        exepct(page).to have_content "フリガナ"
+        expect(page).to have_content "フリガナ"
         expect(page).to have_content "郵便番号"
         expect(page).to have_content "住所"
         expect(page).to have_content "電話番号"
-        expect(page).to have_conetnt "メールアドレス"
+        expect(page).to have_content "メールアドレス"
       end
       it "has customer-information for each heading" do
         expect(page).to have_content customer1.id
-        expect(page).to have_content customer1.full_name
-        expect(page).to have_content customer1.full_name_kana
+        expect(page).to have_content customer1.full_name_with_space
+        expect(page).to have_content customer1.full_name_kana_with_space
         expect(page).to have_content customer1.postcode
         expect(page).to have_content customer1.address
         expect(page).to have_content customer1.tel
@@ -91,8 +91,8 @@ RSpec.describe "AdminCustomers", type: :system do
         expect(page).to have_field "customer[address]"
         expect(page).to have_field "customer[tel]"
         expect(page).to have_field "customer[email]"
-        expect(page).to have_css "customer_is_active_true"
-        expect(page).to have_css "customer_is_active_false"
+        expect(page).to have_css "#customer_is_active_true"
+        expect(page).to have_css "#customer_is_active_false"
       end
       it "has button to update customer_info" do
         expect(page).to have_button "変更を保存する"
@@ -106,9 +106,9 @@ RSpec.describe "AdminCustomers", type: :system do
         fill_in "customer[address]", with: "沖縄県那覇市"
         fill_in "customer[tel]", with: "99999999999"
         fill_in "customer[email]", with: "mine@com"
-        choose "退会"
+        choose "退会済み"
         click_button "変更を保存する"
-        expect(current_path).to eq admin_customer_path(custoemr1)
+        expect(current_path).to eq admin_customer_path(customer1)
         expect(page).to have_content "峰"
         expect(page).to have_content "夕"
         expect(page).to have_content "みね"
@@ -117,7 +117,7 @@ RSpec.describe "AdminCustomers", type: :system do
         expect(page).to have_content "沖縄県那覇市"
         expect(page).to have_content "99999999999"
         expect(page).to have_content "mine@com"
-        expect(page).to have_checked_field ""
+        expect(page).to have_content "退会会員"
       end
 
     end

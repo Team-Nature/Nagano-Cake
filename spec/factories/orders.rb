@@ -6,7 +6,5 @@ FactoryBot.define do
     total_price { 1000 }
     deliver_fee { 800 }
     how_to_pay { 0 }
-    status { 0 }
   end
-  
 end

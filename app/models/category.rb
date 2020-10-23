@@ -5,7 +5,7 @@ class Category < ApplicationRecord
     validates :is_active, inclusion: { in: [true, false] }
     
     def status
-        if is_active
+        if self.is_active
             "有効"
         else
             "無効"
