@@ -2,13 +2,18 @@ class Public::CustomersController < ApplicationController
   before_action :authenticate_customer!
   
   def show
-   @customer = current_customer
   end
 
   def quit
   end
 
   def out
+    @customer = current_customer
+    @customer.update
+
+    reset_session
+    flash[:notice] = "またのご利用を心よりお待ちしております。"
+    redirect_to root_path
   end
 
   def edit
