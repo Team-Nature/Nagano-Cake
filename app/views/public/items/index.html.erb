@@ -1,12 +1,24 @@
-<h1>商品一覧 index</h1>
+<h2>商品一覧</h2>
 
-<% @items.each do |item| %>
+<h4>(全<%= @items.count %>件)</h4>
+
+  <% @items.each do |item| %>
+
+  <%= link_to item_path(item.id) do %>
 
 <p><%= item.name %></p>
 
-<p>￥　<%= item.price %></p>
 
+<% if item.is_active == true %>
 
+  <p>￥　<%= item.price %></p>
 
+<% elsif item.is_active == false %>
+
+  <p>売切れ</p>
+
+<% end %>
+
+<% end %>
 
 <% end %>
