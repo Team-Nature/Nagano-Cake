@@ -2,9 +2,17 @@ class Public::DeliveriesController < ApplicationController
   
   def index
     @deliveries = Delivery.all
+    @delivery = Delivery.new
   end
   
   def create
+    @delivery = Delivery.new
+    if @delivery.save
+      redirect_to deliveries_path, notice: "You have created book successfully."
+    else
+      @deliveries = Delivery.all
+      render 'index'
+    end
   end
   
   def destroy
