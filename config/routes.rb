@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   scope module: :public do
     get 'customers/quit' => 'customers#quit', as: 'quit' #退会画面表示
     patch 'customers/out' => 'customres#out', as: 'out' #退会処理
+    patch 'customers/edit' => 'customers#edit', as: 'edit'
   end
 
   #商品
