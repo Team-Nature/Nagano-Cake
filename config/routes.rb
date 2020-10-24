@@ -4,7 +4,6 @@ Rails.application.routes.draw do
 
   namespace :admin do  #管理者ログイン
     resources :order_items, only: [:update]
-    devise_for :customers
   end
 
   scope module: :public do

@@ -1,5 +1,6 @@
 class Admin::ItemsController < ApplicationController
-  
+  before_action :authenticte_admin!
+    
   def index
   end
   

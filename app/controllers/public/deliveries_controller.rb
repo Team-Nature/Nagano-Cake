@@ -1,4 +1,5 @@
 class Public::DeliveriesController < ApplicationController
+  before_action :authenticate_customer!
   
   def index
     @deliveries = Delivery.all

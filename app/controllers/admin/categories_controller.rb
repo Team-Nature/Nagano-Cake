@@ -1,5 +1,5 @@
 class Admin::CategoriesController < ApplicationController
-  
+  before_action :authenticte_admin!
   
   def new
     @category_new = Category.new

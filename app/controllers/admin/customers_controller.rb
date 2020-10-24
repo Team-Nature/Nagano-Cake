@@ -1,5 +1,6 @@
 class Admin::CustomersController < ApplicationController
-  
+  before_action :authenticte_admin!
+
   def update
     @customer = Customer.find(params[:id])  
     if @customer.update(customer_params)
