@@ -67,3 +67,5 @@ CartItem.create([
 Admin.create(
   { email: "yuki@com", password: "testest" }
 )
+
+

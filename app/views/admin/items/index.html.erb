@@ -1,5 +1,4 @@
   <h1>商品一覧</h1>
-  <%= form_with model:@items, local: true do |f| %>
   <table class='table'>
   <thead>
     <tr>
@@ -14,16 +13,13 @@
     <% @items.each do |item| %>
     <tr>
       <td><%= item.id %></td>
-      <td><%= item.name %></td>
+      <td><%= link_to item.name, admin_item_path(item) %></td>
       <td><%= item.price %></td>
-      <td><%= categories.name %></td>
-      <td><%= item.is_active %></td>
+      <td><%= item.category.name %></td>
+      <td><%= item.status %></td>
     </tr>
     <% end %>
   </tbody>
   </table>
+  
 
-
-
- </div>
-</div>

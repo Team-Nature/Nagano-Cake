@@ -1,6 +1,6 @@
 <h1>登録情報編集</h1>
 
-<%= form_with model: @customers, local: true, method: :patch do |f| %>
+<%= form_with model: @customer, url: customers_path, local: true, method: :patch do |f| %>
 
 	<!-- エラーメッセージ表示-->
 	<% if @customer.errors.any? %>
