@@ -1,6 +1,6 @@
 <h1>注文情報入力</h1>
 
-<%= form_with :model => @orders, method: :post, local: true  do |f| %>
+<%= form_with model: @order, url: log_path, method: :post, local: true  do |f| %>
 
 <h3>支払い方法</h3>
 
@@ -24,8 +24,11 @@
 
 <br>
  <% if @deliveries_addresses != [] %>
- <%= f.radio_button :addresses, "deliveries_address" %>
+ <%= f.radio_button :addresses, "deliver_address" %>
  <span>登録済住所から選択</span><br>
+
+<%= f.select :select_address, current_customer.deliveries.all.map { |address| ["#{address.postcode} #{address.address} #{address.name}", address.id] } %>
+
 
  <br>
  <%= f.radio_button :addresses, "new_address" %>
@@ -33,13 +36,13 @@
 <span>新しいお届け先</span><br>
 
   <%= f.label :"郵便番号(ハイフンなし)" %>
-  <%= f.text_field :postcode %>
+  <%= f.text_field :deliver_postcode %>
 <br>
   <%= f.label :"住所" %>
-  <%= f.text_field :address %>
+  <%= f.text_field :deliver_address %>
 <br>
   <%= f.label :"宛名" %>
-  <%= f.text_field :name %>
+  <%= f.text_field :deliver_name %>
 <br>
 
 <%= f.submit "確認画面へ進む", class: "btn btn-primary" %>

@@ -29,7 +29,7 @@ class Order < ApplicationRecord
       subtotal = item.amount * item.price
       total_price += subtotal
     end
-    total_price
+    self.total_price = total_price
   end
   
   def get_whole_total_price

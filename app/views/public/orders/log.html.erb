@@ -1,1 +1,66 @@
 <h1>注文情報確認　log</h1>
+
+<table>
+<thead>
+<tr>
+<th>商品名</th>
+<th>単価(税込)</th>
+<th>数量</th>
+<th>小計</th>
+</tr>
+</thead>
+<tbody>
+<% @order_items.each do |order_item| %>
+<tr>
+<td>
+<!--%= attachment_image_tag( cart.item, :image, size: "60x50", fallback: "no_image.png") %>-->
+<%= order_item.item.name %>
+</td>
+<td>
+¥ 単価
+</td>
+<td>
+<%= order_item.amount %>
+</td>
+<td>
+¥　小計
+</td>
+</tr>
+<% end %>
+</tbody>
+</table>
+</div>
+<div>
+<table>
+<tr>
+<th>送料</th>
+<td>¥<%= @order.deliver_fee %></td>
+</tr>
+<tr>
+<th>商品合計</th>
+<td></td>
+</tr>
+<tr>
+<th>請求金額</th>
+<td>¥</td>
+</tr>
+</table>
+</div>
+<div>
+<table>
+<tr>
+<th>支払方法</th>
+<td>
+<%= @order.how_to_pay %>
+</td>
+</tr>
+<tr>
+<th>お届け先</th>
+<td>
+<%= "#{@order.deliver_postcode} #{@order.deliver_address} #{@order.deliver_name}" %>
+</td>
+</tr>
+</table>
+<%= form_with model: @order, local: true do |f| %>
+<%= f.submit "購入を確定する", class: "btn btn-primary" %>
+<% end %>
