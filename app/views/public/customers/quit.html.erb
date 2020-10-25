@@ -8,4 +8,7 @@
 
 
 <%= link_to "退会しない", customers_path, class: 'btn btn-primary' %><br>
-<!--%= link_to "退会する", customers_outpath, method: :PATCH, data: {confirm: "本当に退会してもよろしいですか？"}, class: "btn btn-danger" %>-->
+<%= form_with model: @customer, url: out_path, local: true do |f| %>
+    <%= f.hidden_field :is_active, value: false %>
+<%= f.submit "退会する", class: "btn btn-danger", data: {confirm: "本当に退会しますか？" } %>
+<% end %>
