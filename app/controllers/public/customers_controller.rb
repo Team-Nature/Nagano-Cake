@@ -1,13 +1,19 @@
 class Public::CustomersController < ApplicationController
 
   def show
-   @customer = current_customer
+    @customer = current_customer
   end
 
   def quit
   end
 
   def out
+    @customer = current_customer
+    @customer.update
+
+    reset_session
+    flash[:notice] = "またのご利用を心よりお待ちしております。"
+    redirect_to root_path
   end
 
   def edit

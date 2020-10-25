@@ -39,8 +39,13 @@
       <td><%= delivery.address %></td>
       <td><%= delivery.name %></td>
       <td>
+<<<<<<< HEAD
         <%= link_to "編集する", edit_delivery_path(delivery), class: "btn-sm btn-success" %>
         <%= link_to "削除する", delivery_path(delivery), method: :delete, class: "btn-sm btn-danger" %>
+=======
+        <%= link_to "編集する", edit_delivery_path(delivery), class: "btn-sm btn-success edit_delivery_#{delivery.id}" %>
+        <%= link_to "削除する", delivery_path(delivery), method: :delete, class: "btn-sm btn-danger destroy_delivery_#{delivery.id}" %>
+>>>>>>> ae67b6b809d75d46c3148af356a070aadbc7254b
       </td>
     </tr>
     <% end %>
