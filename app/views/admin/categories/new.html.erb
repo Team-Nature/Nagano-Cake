@@ -1,7 +1,8 @@
 <div class="col-md-6">
   <section class="category_new">
     <h3>ジャンル一覧・追加</h3>
-    
+    <%= render "layouts/error", resource: @category_new %>
+
     <br>
     
     <%= form_with model: @category_new, url: admin_categories_path, local: true do |f| %>
@@ -27,7 +28,7 @@
           <% @categories.each do |category| %>
             <tr>
               <td><%= category.name %></td>
-              <td><%= category.is_active %></td>
+              <td><%= category.status %></td>
               <td><%= link_to "編集する", edit_admin_category_path(category), class: "btn btn-primary" %></td>
             </tr>
           <% end %>

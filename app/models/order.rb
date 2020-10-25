@@ -5,9 +5,9 @@ class Order < ApplicationRecord
   has_many :order_items, dependent: :destroy
   belongs_to :customer
   
-  validates :deliver_postcode, presence: true
-  validates :deliver_address, presence: true
-  validates :deliver_name, presence: true
+  validates :deliver_postcode, presence: { message: "は必須項目です。" }
+  validates :deliver_address, presence: { message: "は必須項目です。" }
+  validates :deliver_name, presence: { message: "は必須項目です。" }
   validates :deliver_fee, presence: true, numericality: true
   validates :total_price, presence: true, numericality: true
   validates :how_to_pay, presence: true, inclusion: { in: ["クレジットカード", "銀行振込"] }

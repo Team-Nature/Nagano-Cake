@@ -7,7 +7,6 @@ Rails.application.routes.draw do
 
   namespace :admin do  #管理者ログイン
     resources :order_items, only: [:update]
-    devise_for :customers
   end
 
   scope module: :public do
@@ -39,11 +38,12 @@ Rails.application.routes.draw do
 
   #商品
   namespace :admin do
-  resources :items, only: [:index, :show, :new, :create, :edit, :update]
+    resources :items, only: [:index, :show, :new, :create, :edit, :update]
   end
 
   scope module: :public do
-  resources :items, only: [:index, :show]
+    get "items/category/:id", to: "items#search", as: "search"
+    resources :items, only: [:index, :show]
   end
 
   #注文
