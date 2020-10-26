@@ -24,7 +24,7 @@
         <div class="form-group form-inline">
           <%= f.radio_button :addresses, "address", checked: true, class: "form-control"  %>
           <%= f.label :addresses_address, "ご自身の住所", class: "control-label" %>
-          <p style="margin-left: 30px;">
+          <p>
             <%= "#{current_customer.address}" %>&nbsp; <%= "#{current_customer.address}" %><br>
             <%= "#{current_customer.first_name}#{current_customer.last_name}" %>
           </p>
