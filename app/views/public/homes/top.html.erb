@@ -28,10 +28,13 @@
   <table>
 <h3>オススメ商品</h3>
 <% @items.first(4). each do |item| %>
+
     <th>
+<%= link_to item_path(item.id) do %>
 <p><%= attachment_image_tag(item, :image, size: "180x130", fallback: "/assets/images/noimage.jpg") %></p>
 <p><%= item.name %></p>
-<p><%= item.price %></p>
+<p>￥ <%= item.price %></p>
+<% end %>
 <% end %>
     </th>
   </table>
