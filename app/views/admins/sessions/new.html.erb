@@ -1,5 +1,5 @@
 <h1>管理者ログイン</h1>
-  <%= form_with model: @admin, url: session_path(resource), local: true do |f|%>
+  <%= form_with model: @admin, url: admin_session_path(resource), local: true do |f|%>
     <div class="form-group">
       <%= f.label :email, "メールアドレス", class: "control-label" %><br />
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
