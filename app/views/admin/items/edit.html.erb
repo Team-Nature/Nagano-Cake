@@ -1,54 +1,76 @@
-<h1>商品編集</h1>
-<%= form_with model:@item, url: admin_item_path(@item), local: true do |f| %>
+<div class="col-sm-10 col-sm-offset-1">
+  <h1 style="margin-bottom: 50px;">商品編集</h1>
+</div>
 
-	<!-- エラーメッセージ表示-->
-	<% if @item.errors.any? %>
-		<div id="error_explanation">
-			<h3><%= @item.errors.count %>error prohibited this obj from being saved:</h3>
-			<ul>
-				<% @item.errors.full_messages.each do |message| %>
-				<li><%= message %></li>
-				<% end %>
-			</ul>
-		</div>
-	<% end %>
-	<!-- エラーメッセージ表示-->
-
-<table class='table'>
-
-
-  <div class="field form-group col-xs-9">
-    <%= f.label :商品名, class: "col-sm-4 control-label" %>
-    <%= f.text_field :name, autofocus: true, class: "col-sm-4 control-label" %>
-  </div>
-
-  <div class="field form-group col-xs-12">
-    <%= f.label :商品説明, class: "col-sm-3 control-label" %>
-    <%= f.text_area :description, autofocus: true, autocomplete: "description", class: "col-sm-7 control-label" %>
-  </div>
-
-  <div class="field form-group col-xs-9">
-    <%= f.label :ジャンル, class: "col-sm-4 control-label" %>
-    <%= f.collection_select :category, Category.all, :id, :name %>
-  </div>
-
-　<div class="field form-group col-xs-9">
-    <%= f.label :税抜価格, class: "col-sm-4 control-label" %>
-    <%= f.text_field :price, autofocus: true, class: "col-sm-4 control-label" %>
-    <span>円</span>
-  </div>
-
-　　<div class="form-group">
-        <%= f.label :is_active, "販売ステータス" %>
-        <%= f.select :is_active, [[ "販売中", true ], [ "販売中止", false ]], { selected: @item.is_active }, { class: "form-control" } %>
+<%= form_with model: @item, url: admin_item_path(@item), local: true do |f| %>
+  <%= render "layouts/error", resource: @item %>
+  <div class="row">
+    <div class="col-sm-4">
+      <%= attachment_image_tag @item, :image, :fill, 200, 150, format: "jpg", fallback: "noimage.jpg", size: "200x150" %>
+      <%= f.attachment_field :image %>
     </div>
-　</tbody>
-</table>
-
-  <div class="actions col-xs-6">
-    <%= f.submit "変更を保存",class: 'btn btn-success'  %>
+    
+    <div class="col-sm-8">
+  
+      <div class="row">
+        <div class="col-sm-2 form-group">
+          <%= f.label :name, "商品名", class: "control-label" %>
+        </div>
+        <div class="col-sm-4  form-group">
+          <%= f.text_field :name, autofocus: true, class: "form-control" %>
+        </div>
+        <div class="col-sm-6"></div>
+      </div>
+      
+      <div class="row">
+        <div class="field form-group col-sm-2">
+          <%= f.label :description, "商品説明", class: "control-label" %>
+        </div>
+        <div class="col-sm-4 form-group ">
+          <%= f.text_area :description, class: "form-control" %>
+        </div>
+        <div class="col-sm-6"></div>
+      </div>
+      
+      <div class="row">
+        <div class="col-sm-2 form-group">
+          <%= f.label :category, "ジャンル", class: "contorl-label" %>
+        </div>
+        <div class="col-sm-4 form-group">
+          <%= f.select :category, Category.all.map {|c| [c.name, c.id] }, { selected: @item.category.id }, { class: "form-control" } %>
+        </div>
+        <div class="col-sm-6"></div>
+      </div>
+      
+      <div class="row">
+        <div class="form-group col-sm-2">
+          <%= f.label :price, "税抜価格", class: "control-label" %>
+        </div>
+        <div class="col-sm-4 form-group">
+          <div class="input-group">
+            <%= f.text_field :price, class: "form-control" %>
+            <span class="input-group-addon">円</span>
+          </div>
+        </div>
+        <div class="col-sm-6"></div>
+      </div>
+      
+      <div class="row">
+        <div class="col-sm-2 form-group">
+          <%= f.label :is_active, "販売ステータス", class: "control-label" %>
+        </div>
+        <div class="col-sm-4 form-group ">
+          <%= f.select :is_active, [["販売中", true], ["販売中止", false]], {  selected: @item.is_active }, { class: "form-control" } %>
+        </div>
+        <div class="col-sm-6"></div>
+      </div>
+    </div>
   </div>
-
-
-
-<% end %>
+  
+  <div class="row">
+    <div class="col-sm-12 text-right">
+      <%= f.submit "変更を保存", class: "btn btn-primary btn-lg" %>
+    </div>
+  </div>
+  <% end %>
+</div>

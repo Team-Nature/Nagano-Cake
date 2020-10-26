@@ -5,10 +5,10 @@ class Public::OrdersController < ApplicationController
   end
 
   def log
-
-    @order = current_customer.orders.new
+    @order = current_customer.orders.new(deliver_fee: "800")
     @order_items = current_customer.cart_items
     @order.how_to_pay = order_params[:how_to_pay]
+    @total_price = CartItem.total_price_with_tax(current_customer)
     if order_params[:addresses] == "address"
       @order.deliver_postcode = current_customer.postcode
       @order.deliver_address = current_customer.address
