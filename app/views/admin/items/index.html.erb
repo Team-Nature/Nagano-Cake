@@ -1,13 +1,18 @@
-  <h1>商品一覧</h1>
-  <%= link_to "+", new_admin_item_path, class: "btn btn-lg" %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+
+  <h4>商品一覧</h>
+  <%= link_to "", new_admin_item_path, class: "btn btn-lg glyphicon glyphicon-plus pull-right" %>
   <table class='table'>
   <thead>
     <tr>
-      <th>商品ＩＤ</th>
-      <th>商品名</th>
-      <th>税抜価格</th>
-      <th>ジャンル</th>
-      <th>ステータス</th>
+      <th class="info">商品ID</th>
+      <th class="info">商品名</th>
+      <th class="info">税抜価格</th>
+      <th class="info">ジャンル</th>
+      <th class="info">ステータス</th>
     </tr>
   </thead>
   <tbody>
@@ -22,5 +27,7 @@
     <% end %>
   </tbody>
   </table>
-  
 
+    </div>
+  </div>
+</div>

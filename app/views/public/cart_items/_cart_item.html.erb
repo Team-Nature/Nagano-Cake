@@ -1,5 +1,8 @@
 <tr>
-  <td><%= cart_item.item.name %></td>
+  <td>
+    <%= attachment_image_tag(cart_item.item, :image, size: "50x30", fallback: "/assets/images/noimage.jpg") %>
+    <%= cart_item.item.name %>
+    </td>
   <td> <%= cart_item.price_with_tax %></td>
   <td>
     <%= form_with model: cart_item, local: true do |f| %>

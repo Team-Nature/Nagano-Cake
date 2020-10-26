@@ -10,31 +10,31 @@
 <br>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
-  <div class="field form-group col-xs-9">
+  <div class="field form-group col-sm-9">
     <%= f.label :メールアドレス, class: "col-sm-3 control-label" %>
     <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "col-sm-8 control-label" %>
   </div>
 
-  <div class="field form-group col-xs-9">
+  <div class="field form-group col-sm-9">
     <%= f.label :パスワード, class: "col-sm-3 control-label" %>
     <%= f.password_field :password, autocomplete: "current-password", class: "col-sm-8 control-label" %>
   </div>
 
-  <div class="col-xs-6 pull-right">
+  <div class="col-sm-6 pull-right">
     <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
      <%= link_to "=>パスワードを忘れた方はこちら", new_password_path(resource_name) %>
     <% end %>
   </div>
 
-  <div class="actions col-xs-9 pull-right">
+  <div class="actions col-sm-9 pull-right">
     <%= f.submit "ログイン", class: "col-sm-3 btn btn-primary" %>
   </div>
   
   
-  <div class="col-xs-9">
+  <div class="col-sm-9">
     <h4>登録がお済みでない方</h4>
     <br>
-    <div class="col-xs-12 pull-right">
+    <div class="col-sm-12 pull-right">
      <p><%= link_to ' こちら ', "/customers/sign_up" %>から新規登録を行ってください。</p>
   </div>
   

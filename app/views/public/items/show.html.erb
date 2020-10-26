@@ -1,19 +1,37 @@
-<h1>商品詳細　Show</h1>
 
- <!--%= attachment_image_tag(@items, :images, size: "340x220", fallback: "no_image.png" ) %>-->
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+
+
+<div class="category-container">
+ <div class="col-sm-2">
+  <%= render "public/items/category" %>
+ </div>
+</div>
+
+
+<div class="col-sm-10">
+
+
+<div class="col-sm-6">
+<p><%= attachment_image_tag(@item, :image, size: "360x240", fallback: "/assets/images/noimage.jpg") %></p>
+</div>
 
 <h1><%= @item.name %></h1>
 
 <h4><%= @item.description %></h4>
 
-<h2>￥　<%= @item.price %>　（税込）</h2>
+<h2>￥<%= @item.price %>(税込)</h2>
 
+
+
+<div class="col-sm-10 text-right">
 
  <% if @item.is_active == true %>
  <% if @item.category.is_active == true %>
 
  <%= form_with model: @cart_item, local: true do |f| %>
-
     <%= f.hidden_field :item_id, value: @item.id %>
     <%= f.select :amount, options_for_select((1..5).to_a), include_blank: "個数選択" %>
     <%= f.submit "カートに入れる", class: " btn btn-primary" %>
@@ -21,8 +39,12 @@
 
 
 <% elsif @item.is_active == false %>
-
    <h3>売り切れ中</h3>
 <% end %>
 <% end %>
 
+</div>
+
+    </div>
+  </div>
+</div>
