@@ -1,17 +1,17 @@
 <div class="col-sm-12">
   <section class="category_new">
-    <h3>ジャンル一覧・追加</h3>
+    <h3 class="margin-bottom-sm page-heading"><span>&emsp;ジャンル一覧・追加&emsp;</h3>
     <%= render "layouts/error", resource: @category_new %>
     
-    <%= form_with model: @category_new, url: admin_categories_path, class: "form-inline", local: true do |f| %>
-      <%= f.label :name, "ジャンル" %>
-      <%= f.text_field :name, class: "form-inline" %>
-      <%= f.radio_button :is_active, true, checked: true, class: "form-control" %>
-      <%= f.label :is_active, "有効", class: "control-label" %>
-      <%= f.radio_button :is_active, false, class: "form-control" %>
-      <%= f.label :is_active, "無効", class: "control-label" %>
-      <%= f.submit "追加", class: "btn btn-primary" %>
-    <% end %>
+      <%= form_with model: @category_new, url: admin_categories_path, class: "form-inline margin-bottom-sm", local: true do |f| %>
+        <%= f.label :name, "ジャンル" %>
+        <%= f.text_field :name, class: "form-inline" %>
+        <%= f.radio_button :is_active, true, checked: true, class: "form-control" %>
+        <%= f.label :is_active, "有効", class: "control-label" %>
+        <%= f.radio_button :is_active, false, class: "form-control" %>
+        <%= f.label :is_active, "無効", class: "control-label" %>
+        <%= f.submit "追加", class: "btn btn-primary" %>
+      <% end %>
   </section>
   
   <div class="row">
@@ -24,9 +24,9 @@
           <tbody>
           <% @categories.each do |category| %>
             <tr>
-              <td><%= category.name %></td>
-              <td><%= category.status %></td>
-              <td><%= link_to "編集する", edit_admin_category_path(category), class: "btn btn-primary" %></td>
+              <td class="line-height-2-5"><%= category.name %></td>
+              <td class="line-height-2-5"><%= category.status %></td>
+              <td class="line-height-2-5"><%= link_to "編集する", edit_admin_category_path(category), class: "btn btn-primary" %></td>
             </tr>
           <% end %>
           </tbody>
