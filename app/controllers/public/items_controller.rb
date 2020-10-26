@@ -1,15 +1,16 @@
 class Public::ItemsController < ApplicationController
-  
+
   def index
     @items = Item.all
+    @title = "商品"
   end
-  
+
   def show
     @items = Item.all
     @item = Item.find(params[:id])
     @cart_item = CartItem.new
   end
-  
+
   def search
     case params[:id]
     when "1"
