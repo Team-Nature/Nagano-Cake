@@ -6,11 +6,12 @@ class Public::CustomersController < ApplicationController
   end
 
   def quit
+    @customer = current_customer
   end
 
   def out
     @customer = current_customer
-    @customer.update
+    @customer.update(customer_params)
 
     reset_session
     flash[:notice] = "またのご利用を心よりお待ちしております。"
@@ -32,7 +33,7 @@ class Public::CustomersController < ApplicationController
 
   private
   def customer_params
-    params.require(:customer).permit(:last_name, :first_name, :last_name, :last_name_kana, :email, :postcode, :address, :tel)
+    params.require(:customer).permit(:last_name, :first_name, :last_name, :last_name_kana, :email, :postcode, :address, :tel, :is_active)
   end
 
 
