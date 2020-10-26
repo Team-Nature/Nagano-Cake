@@ -1,3 +1,22 @@
 // Place all the styles related to the admin::items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.new-item-btn{
+	border-radius: 50%;
+	border: 4px solid #eeeeee;
+}
+
+.new-item-btn{
+	font-size: 15px;
+	border-radius: 50%;
+	box-shadow: 2px 2px 2px rgba(0,0,0,4);
+}
+
+.item-description{
+	font-size: 20px; 
+	width: 300px; 
+	overflow-wrap: anywhere; 
+	display: inline-block;
+}
