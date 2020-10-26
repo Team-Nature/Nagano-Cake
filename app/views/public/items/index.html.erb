@@ -1,26 +1,39 @@
-<h2>商品一覧</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
 
-<%= render "category" %>
 
-<h4>(全<%= @items.count %>件)</h4>
+<div class="category-container">
+ <div class="col-sm-2">
+  <%= render "public/items/category" %>
+ </div>
+</div>
+
+<div class="col-sm-10">
+  <table class="table table-striped">
+
+<h2>商品一覧　(全<%= @items.count %>件)</h2>
+
+  <table>
 
   <% @items.each do |item| %>
-
-  <%= link_to item_path(item.id) do %>
-
+ <%= link_to item_path(item.id) do %>
+<p><%= attachment_image_tag(item, :image, size: "180x130", fallback: "/assets/images/noimage.jpg") %></p>
 <p><%= item.name %></p>
-
-
 <% if item.is_active == true %>
-
   <p>￥　<%= item.price %></p>
-
 <% elsif item.is_active == false %>
-
   <p>売切れ</p>
-
+<% end %>
+<% end %>
 <% end %>
 
-<% end %>
+</table>
 
-<% end %>
+    </div>
+  </div>
+
+
+    </div>
+  </div>
+</div>
