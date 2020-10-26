@@ -12,13 +12,14 @@ class Admin::ItemsController < ApplicationController
   def create
     params = item_params
     params[:category] = Category.find_by(name: item_params[:category])
-    #params[:image_id] = "IMAGE"
     @item = Item.new(params)
-    if @item.save
+    #params[:image_id] = "IMAGE"
+    if @item.save(params)
       redirect_to admin_items_path
     else
       render "new"
     end
+    debugger
   end
 
   
@@ -34,7 +35,6 @@ class Admin::ItemsController < ApplicationController
     @item = Item.find(params[:id])
     params = item_params
     params[:category] = Category.find(item_params[:category])
-    debugger
     if @item.update(params)
       redirect_to admin_item_path(@item)
     else

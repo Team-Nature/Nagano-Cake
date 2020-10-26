@@ -14,6 +14,7 @@ class Admin::CategoriesController < ApplicationController
       @categories = Category.all
       render "new"
     end
+    debugger
   end
   
   def edit

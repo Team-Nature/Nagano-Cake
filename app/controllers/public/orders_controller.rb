@@ -46,10 +46,14 @@ class Public::OrdersController < ApplicationController
     @order_items = @order.order_items
     if @order.save
       current_customer.cart_items.destroy_all
+      if session[:addresses] == "new_address"
+        current_customer.deliveries.create(postcode: @order.deliver_postcode, address: @order.deliver_address, name: @order.deliver_name)
+      end
       session.delete(:how_to_pay)
       session.delete(:deliver_postcode)
       session.delete(:deliver_address)
       session.delete(:deliver_name)
+      session.delete(:addresses)
       redirect_to thanks_path
     else
       render "log"

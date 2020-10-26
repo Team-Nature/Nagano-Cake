@@ -20,7 +20,7 @@
       </td>
       <td>
         <% order.order_items.each do |order_item| %>
-        <%= cart_item.item_name %>
+        <%= order_item.item.name %>
         <% end %>
       </td>
       <td><%= order.get_whole_total_price %></td>
