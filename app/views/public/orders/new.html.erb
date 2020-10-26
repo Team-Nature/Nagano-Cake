@@ -1,51 +1,109 @@
-<h1>注文情報入力</h1>
+<div class="col-sm-12">
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+      <h1>注文情報入力</h1>
+    </div>
+  </div>
+  <%= form_with model: @order, url: log_path, method: :post, local: true  do |f| %>
+  
+    <div class="row">
+      <div class="col-sm-12">
+        <h3>支払い方法</h3>
+        <div class="form-group form-inline">
+          <%= f.radio_button :how_to_pay, :"クレジットカード", class: "form-control" %>
+          <%= f.label :how_to_pay_クレジットカード, "クレジットカード", class: "control-label" %><br>
+          <%= f.radio_button :how_to_pay, :"銀行振込", class: "form-control" %>
+          <%= f.label :how_to_pay_銀行振込, "銀行振込", class: "control-label" %>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-sm-12">
+        <h3>お届け先</h3>
+        <div class="form-group form-inline">
+          <%= f.radio_button :addresses, "address", checked: true, class: "form-control"  %>
+          <%= f.label :addresses_address, "ご自身の住所", class: "control-label" %>
+          <p style="margin-left: 30px;">
+            <%= "#{current_customer.address}" %>&nbsp; <%= "#{current_customer.address}" %><br>
+            <%= "#{current_customer.first_name}#{current_customer.last_name}" %>
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="form-group form-inline">
+          <%= f.radio_button :addresses, "deliver_address", class: "form-control" %>
+          <%= f.label :addresses_deliver_address, "登録済住所から選択", class: "control-label" %>
+        </div>
+        <div class="row">
+          <div class="col-sm-10 col-sm-offset-1">
+            <div class="form-group">
+              <%= f.select :select_address, current_customer.deliveries.all.map { |address| ["#{address.postcode} #{address.address} #{address.name}", address.id] }, {}, { class: "form-control" } %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="form-group form-inline">
+          <%= f.radio_button :addresses, "new_address", class: "form-control" %>
+          <%= f.label :addresses_new_address, "新しいお届け先", class: "control-label" %>
+        </div>
+        
+        <div class="row" style="margin-left: 30px;">
+          <div class="col-sm-2">
+            <div class="form-group">
+              <%= f.label :deliver_postcode, "郵便番号(ハイフンなし)", class: "control-label" %>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <%= f.text_field :deliver_postcode, class: "form-control" %>
+            </div>
+          </div>
+          <div class="col-sm-4"></div>
+        </div>
+        
+        <div class="row" style="margin-left: 30px;">
+          <div class="col-sm-2">
+            <div class="form-group">
+              <%= f.label :deliver_address, "住所", class: "control-label" %>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <div class="form-group">            
+              <%= f.text_field :deliver_address, class: "form-control" %>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row" style="margin-left: 30px;">
+          <div class="col-sm-2">  
+            <div class="form-group">
+              <%= f.label :deliver_name, "宛名", class: "control-label" %>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <%= f.text_field :deliver_name, class: "form-control" %>
+            </div>
+          </div>
+          <div class="col-sm-4"></div>
+        </div>
+        
+      </div>
+    </div>
 
-<%= form_with model: @order, url: log_path, method: :post, local: true  do |f| %>
-
-<h3>支払い方法</h3>
-
-<div>
-<%= f.radio_button :how_to_pay, :"クレジットカード" %>
-<span>クレジットカード</span>
-</div>
-
-
-<div>
-<%= f.radio_button :how_to_pay, :"銀行振込" %>
-<span>銀行振り込み</span>
-</div>
-
-<h3>お届け先</h3>
-<%= f.radio_button :addresses, "address", checked: true  %>
-<span>ご自身の住所</span><br>
-<%= "#{current_customer.address} #{current_customer.address}" %>
-<br>
-<%= "#{current_customer.first_name} #{current_customer.last_name}" %>
-
-<br>
- <% if @deliveries_addresses != [] %>
- <%= f.radio_button :addresses, "deliver_address" %>
- <span>登録済住所から選択</span><br>
-
-<%= f.select :select_address, current_customer.deliveries.all.map { |address| ["#{address.postcode} #{address.address} #{address.name}", address.id] } %>
-
-
- <br>
- <%= f.radio_button :addresses, "new_address" %>
-
-<span>新しいお届け先</span><br>
-
-  <%= f.label :"郵便番号(ハイフンなし)" %>
-  <%= f.text_field :deliver_postcode %>
-<br>
-  <%= f.label :"住所" %>
-  <%= f.text_field :deliver_address %>
-<br>
-  <%= f.label :"宛名" %>
-  <%= f.text_field :deliver_name %>
-<br>
-
-<%= f.submit "確認画面へ進む", class: "btn btn-primary" %>
-
+    <div class="row">
+      <div class="col-sm-12">
+        <%= f.submit "確認画面へ進む", class: "btn btn-primary" %>
+      </div>
+    </div>
+    
   <% end %>
-<% end %>
+</div>
