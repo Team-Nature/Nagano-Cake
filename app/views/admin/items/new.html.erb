@@ -3,7 +3,9 @@
 <div>
   <table class='table'>
 
-
+  <div>
+    <%= f.attachment_field :item_image %>
+  </div>
   <div class="field form-group col-xs-9">
     <%= f.label :商品名, class: "col-sm-4 control-label" %>
     <%= f.text_field :name, autofocus: true, class: "col-sm-4 control-label" %>
@@ -15,7 +17,7 @@
   </div>
   <div class="field form-group" >
     <%= f.label :ジャンル　%>
-    <%= f.select :category, Category.all, { include_blank: "--選択してください--" } %>
+    <%= f.select :category, Category.all, :id, :name { include_blank: "--選択してください--" } %>
   </div>
   <div class="field form-group col-xs-9">
     <%= f.label :税抜価格, class: "col-sm-4 control-label" %>

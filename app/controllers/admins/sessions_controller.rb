@@ -1,4 +1,4 @@
-class Admin::SessionsController < ApplicationController
+class Admins::SessionsController < ApplicationController
   
   def new
   end
