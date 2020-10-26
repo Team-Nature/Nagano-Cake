@@ -20,3 +20,36 @@ li.welcome-message{
   margin-right: 50px;
   padding: 15px;
 }
+
+.page-heading span{
+  background-color: #eeeeee;
+}
+
+table thead{
+  background-color: #eeeeee;
+}
+
+.margin-bottom-xs{
+	margin-bottom: 15px;
+}
+
+.margin-bottom-sm{
+	margin-bottom: 30px;
+}
+
+.vertical-align-top{
+	vertical-align: top;
+}
+
+.font-size-20{
+  font-size: 20px;
+}
+
+.link-format{
+	color: inherit;
+	text-decoration: underline;
+}
+
+table.no-border tr th, td{
+	border: none !important;
+}

@@ -1,36 +1,36 @@
-<div class="col-sm-10 col-sm-offset-1">
-  <h3 style="margin-bottom: 50px;"><span>商品詳細</span></h3>
+<div class="col-md-10 col-md-offset-1">
+  <h3 class="page-heading margin-bottom-sm"><span>&emsp;商品詳細&emsp;</span></h3>
 </div>
 
 <div class="row">
-  <div class="col-sm-4">
-    <%= attachment_image_tag @item, :image, :fill, 300, 300, format: "jpg", fallback: "noimage.jpg", size: "300x300" %>
+  <div class="col-md-4">
+    <%= attachment_image_tag @item, :image, :fill, 200, 150, format: "jpg", fallback: "noimage.jpg", size: "300x300" %>
   </div>
   
-  <div class="col-sm-5">
-    <div style="margin-bottom: 30px;">
-      <span>商品名</span>&emsp;&emsp;&emsp;<span style="font-size: 20px;"><%= @item.name %></span>
+  <div class="col-md-5">
+    <div class="margin-bottom-sm">
+      <span>商品名</span>&emsp;&emsp;&emsp;<span class="font-size-20"><%= @item.name %></span>
     </div>
-    <div style="margin-bottom: 30px;">
-      <span>商品説明</span>&emsp;&emsp;&emsp;<span style="font-size: 20px;"><%= @item.description %></span>
+    <div class="margin-bottom-sm">
+      <span class="vertical-align-top">商品説明</span>&emsp;&emsp;&emsp;<p class="item-description"><%= @item.description %></p>
     </div>
-    <div style="margin-bottom: 30px;">
-      <span>ジャンル</span>&emsp;&emsp;&emsp;<span style="font-size: 20px;"><%= @item.category.name %></span>
+    <div class="margin-bottom-sm">
+      <span>ジャンル</span>&emsp;&emsp;&emsp;<span class="font-size-20"><%= @item.category.name %></span>
     </div>
-    <div style="margin-bottom: 30px;">
-      <span>税込価格（税抜価格）</span>&emsp;&emsp;&emsp;<span style="font-size: 20px;"><%= @item.price_with_tax %>（<%= @item.price %>）円</span>
+    <div class="margin-bottom-sm">
+      <span>税込価格（税抜価格）</span>&emsp;&emsp;&emsp;<span class="font-size-20"><%= @item.price_with_tax.to_s(:delimited) %>（<%= @item.price.to_s(:delimited) %>）円</span>
     </div>
-    <div style="margin-bottom: 30px;">
-      <span>販売ステータス</span>&emsp;&emsp;&emsp;<span style="font-size: 20px;"><%= @item.status %></span>
+    <div class="margin-bottom-sm">
+      <span>販売ステータス</span>&emsp;&emsp;&emsp;<span class="font-size-20"><%= @item.status %></span>
     </div>
   </div>
   
-  <div class="col-sm-3"></div>
+  <div class="col-md-3"></div>
 
 </div>
 
 <div class="row">
-  <div class="col-sm-12 text-right">
+  <div class="col-md-12 text-right">
     <%= link_to "編集する", edit_admin_item_path(@item), class: "btn btn-primary btn-lg", data: { turbolinks: false } %>
   </div>
 </div>

@@ -1,26 +1,28 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-sm-12">
+    <div class="col-sm-10 col-sm-offset-1">
 
-  <h4>商品一覧</h>
-  <%= link_to "", new_admin_item_path, class: "btn btn-lg glyphicon glyphicon-plus pull-right", data: { turbolinks: false } %>
+  <h3 class="page-heading margin-bottom-sm"><span>&emsp;商品一覧&emsp;</span></h3>
+  <div class="margin-bottom-xs text-right">
+    <%= link_to "", new_admin_item_path, class: "glyphicon glyphicon-plus new-item-btn", data: { turbolinks: false } %>
+  </div>
   <table class='table'>
   <thead>
     <tr>
-      <th class="info">商品ID</th>
-      <th class="info">商品名</th>
-      <th class="info">税抜価格</th>
-      <th class="info">ジャンル</th>
-      <th class="info">ステータス</th>
+      <th>商品ID</th>
+      <th>商品名</th>
+      <th>税抜価格</th>
+      <th>ジャンル</th>
+      <th>ステータス</th>
     </tr>
   </thead>
   <tbody>
     <% @items.each do |item| %>
     <tr>
       <td><%= item.id %></td>
-      <td><%= link_to item.name, admin_item_path(item) %></td>
-      <td><%= item.price %></td>
+      <td><%= link_to item.name, admin_item_path(item), class: "item-link" %></td>
+      <td><%= item.price.to_s(:delimited) %></td>
       <td><%= item.category.name %></td>
       <td><%= item.status %></td>
     </tr>

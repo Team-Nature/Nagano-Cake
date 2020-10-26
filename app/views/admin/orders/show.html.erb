@@ -2,16 +2,16 @@
   <%= render "layouts/error", resource: @order %>
   <div class="row">
     <div class="col-sm-10 col-sm-offset-1">
-      <h3 class="order-show-title"><span>注文履歴詳細</span></h3>
+      <h3 class="page-heading margin-bottom-sm"><span>&emsp;注文履歴詳細&emsp;</span></h3>
     </div>
   </div>
   
   <div class="row">
     <div class="col-sm-12">
-      <table class="table">
+      <table class="table no-border">
         <tr class="row">
           <th class="col-sm-2">購入者</th>
-          <td class="col-sm-10"><u><%= link_to @order.customer.full_name, admin_customer_path(@order.customer) %></u></td>
+          <td class="col-sm-10"><%= link_to @order.customer.full_name, admin_customer_path(@order.customer), class: "link-format" %></td>
         </tr>
         <tr class="row">
           <th class="col-sm-2">配送先</th>
@@ -34,7 +34,7 @@
     </div>
   </div>
 
-  <div class="row order-item-info">
+  <div class="row relative">
     <div class="col-sm-8">
       <table class="table no-border">
         <thead>
@@ -43,12 +43,12 @@
         <tbody>
           <% @order.order_items.each do |order_item| %>
             <tr>
-              <td style="line-height: 3;"><%= order_item.item.name %></td>
-              <td class="text-center" style="line-height: 3;"><%= order_item.price.to_s(:delimited) %></td>
-              <td class="text-center" style="line-height: 3;"><%= order_item.amount %></td>
-              <td class="text-center" style="line-height: 3;"><%= order_item.subtotal.to_s(:delimited) %></td>
+              <td class="line-height-2-5"><%= order_item.item.name %></td>
+              <td class="text-center line-height-2-5"><%= order_item.price.to_s(:delimited) %></td>
+              <td class="text-center line-height-2-5"><%= order_item.amount %></td>
+              <td class="text-center line-height-2-5"><%= order_item.subtotal.to_s(:delimited) %></td>
               <%= form_with model: order_item, url: admin_order_item_path(order_item), class: "form-inline", local: true do |f| %>
-                <td><%= f.select :status, options_for_select(["着手不可", "製作待ち", "製作中", "製作完了"]), { selected: order_item.status }, { class: "form-control" } %></td>
+                <td><%= f.select :status, ["着手不可", "製作待ち", "製作中", "製作完了"], { selected: order_item.status }, { class: "form-control" } %></td>
                 <td><%= f.submit "更新", class: "btn btn-primary update-make-status" %></td>
               <% end %>
             </tr>
@@ -57,8 +57,8 @@
       </table>
     </div>
   
-    <div class="col-sm-4 order-pay-info">
-      <table class="table no-border no-color-th order-pay-info-table">
+    <div class="col-sm-4 absolute-right-bottom">
+      <table class="table no-border">
         <tr><th><b>商品合計</th><td class="text-right"><%= @order.total_price.to_s(:delimited) %>円</td></tr>
         <tr><th><b>送料</b></th><td class="text-right"><%= @order.deliver_fee.to_s(:delimited) %>円</td></tr>
         <tr><th><b>請求金額合計</b></th><td class="text-right"><b><%= @order.get_whole_total_price.to_s(:delimited) %>円</b></td></tr>

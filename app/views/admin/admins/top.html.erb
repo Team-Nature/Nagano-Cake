@@ -1,18 +1,9 @@
 <div class="row">
-<div class="col-xs-offset-1 col-xs-12">
+  <div class="col-sm-offset-1 col-sm-10">
 
-<h4>管理者画面</h4>
+    <h3 class="page-heading margin-bottom-lg"><span>&emsp;管理者画面&emsp;</span></h3>
 
-<br>
-<br>
-<br>
+    <h3>本日の注文件数&emsp;&emsp;&emsp;&emsp;&emsp;<%= link_to orders_path, class: "link-today-order" do %><%= @count %><% end %>件</h3>
 
-
-
-<td>
-  <h3><spam>本日の注文件数</spam><th>　　　　　　</th>
-  <%= link_to orders_path do %><%= @count %><% end %>件</h3>
-</td>
-
-</div>
+  </div>
 </div>
