@@ -8,7 +8,14 @@ class ApplicationController < ActionController::Base
   
     def after_sign_in_path_for(resource)
       if customer_signed_in?
-        items_path
+        unless current_customer.is_active?
+          @customer = current_customer
+          session.clear
+          flash.notice = "退会済みでございます。"
+          new_customer_session_path
+        else
+          items_path
+        end
       else
         admin_top_path
       end
@@ -19,7 +26,7 @@ class ApplicationController < ActionController::Base
     end
   
     def configure_permitted_parameters
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :kana_first_name, :kana_last_name, :email, :postal_code, :residence, :phone_number])
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :first_name_kana, :last_name_kana, :email, :postcode, :address, :tel])
 
   		devise_parameter_sanitizer.permit(:sign_in, keys: [:email])
 

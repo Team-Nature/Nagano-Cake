@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :admins, controllers: {
     sessions: "admins/sessions",
-    registrations: "admins/retistrations"
+    registrations: "admins/registrations"
   }
   devise_for :customers, path: "auth"
 
@@ -32,7 +32,7 @@ Rails.application.routes.draw do
 
   scope module: :public do
     get 'customers/quit' => 'customers#quit', as: 'quit' #退会画面表示
-    patch 'customers/out' => 'customres#out', as: 'out' #退会処理
+    patch 'customers/out' => 'customers#out', as: 'out' #退会処理
     patch 'customers/edit' => 'customers#edit', as: 'edit'
   end
 
