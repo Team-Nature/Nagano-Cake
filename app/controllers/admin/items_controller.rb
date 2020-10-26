@@ -1,14 +1,14 @@
 class Admin::ItemsController < ApplicationController
   before_action :authenticate_admin!
-    
+
   def index
     @items = Item.all
   end
-  
+
   def new
     @item = Item.new
   end
-  
+
   def create
     params = item_params
     params[:category] = Category.find_by(name: item_params[:category])
@@ -21,15 +21,15 @@ class Admin::ItemsController < ApplicationController
     end
   end
 
-  
+
   def show
     @item = Item.find(params[:id])
   end
-  
+
   def edit
     @item = Item.find(params[:id])
   end
-  
+
   def update
     @item = Item.find(params[:id])
     params = item_params
@@ -40,7 +40,7 @@ class Admin::ItemsController < ApplicationController
       render "edit"
     end
   end
-  
+
   private
     def item_params
       params.require(:item).permit(:image, :name, :description, :category, :price, :is_active)
