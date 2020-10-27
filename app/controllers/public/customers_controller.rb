@@ -14,7 +14,6 @@ class Public::CustomersController < ApplicationController
     @customer.update(customer_params)
 
     reset_session
-    flash[:notice] = "またのご利用を心よりお待ちしております。"
     redirect_to root_path
   end
 
@@ -27,7 +26,6 @@ class Public::CustomersController < ApplicationController
     if @customer.update(customer_params)
       redirect_to customers_path(@customer), notice: "You have updated user successfully."
     else
-      @customer.reload
       render "edit"
     end
   end

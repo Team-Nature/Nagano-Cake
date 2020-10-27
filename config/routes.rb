@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     registrations: "admins/registrations"
   }
   devise_for :customers, path: "auth", controllers: {
+    sessions: "customers/sessions",
     registrations: "customers/registrations"
   }
 
