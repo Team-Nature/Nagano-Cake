@@ -16,6 +16,28 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+.header-line {
+	border-bottom: solid black;
+}
+
+.body-line {
+	border: solid black;
+	width: 90%;
+}
+
+footer {
+	border-top: solid black;
+	color: black;
+  width: 100%;
+  height: 120px;
+  bottom: 0;
+}
+
+.box1 {
+	border: solid 3px;
+	color: black;
+}
+
 li.welcome-message{
   margin-right: 50px;
   padding: 15px;
@@ -37,20 +59,40 @@ table thead{
 	background-color: #eeeeee;
 }
 
-.margin-top-lg{
+.margin-top-lg {
 	margin-top: 150px;
+}
+
+.margin-top-sm {
+	margin-top: 30px;
+}
+
+.margin-top-xs {
+	margin-top: 15px;
 }
 
 .margin-bottom-xs{
 	margin-bottom: 15px;
 }
 
+.margin-right-md{
+	margin-right: 50px;
+}
+
 .margin-bottom-sm{
 	margin-bottom: 30px;
 }
 
+.margin-right-xs {
+	margin-right: 15px;
+}
+
 .margin-left-lg{
 	margin-left: 130px;
+}
+
+.margin-left-xs{
+	margin-left: 15px;
 }
 
 .margin-left-md{
@@ -75,6 +117,10 @@ th, td{
 
 .font-size-15{
 	font-size: 15px;
+}
+
+.font-size-30{
+	font-size: 30px;
 }
 
 .width-50{
