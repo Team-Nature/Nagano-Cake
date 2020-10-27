@@ -65,7 +65,7 @@ table thead{
 	vertical-align: top;
 }
 
-.vertical-align-middle{
+th, td{
 	vertical-align: middle !important;
 }
 
@@ -78,7 +78,7 @@ table thead{
 }
 
 .width-50{
-	width: 50px;
+	width: 50px !important;
 }
 
 .link-format{

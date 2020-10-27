@@ -1,9 +1,6 @@
 class Public::DeliveriesController < ApplicationController
   before_action :authenticate_customer!
 
-
-
-
   def index
     @delivery = current_customer.deliveries.new
     @deliveries = current_customer.deliveries.all
@@ -14,6 +11,7 @@ class Public::DeliveriesController < ApplicationController
     if @delivery.save
       redirect_to deliveries_path, notice: "You have created book successfully."
     else
+      @deliveries = current_customer.deliveries.all
       render 'index'
     end
   end

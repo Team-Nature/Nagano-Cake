@@ -5,9 +5,9 @@
     </td>
   <td> <%= cart_item.price_with_tax.to_s(:delimited) %></td>
   <td class="text-center">
-    <%= form_with model: cart_item, local: true do |f| %>
+    <%= form_with model: cart_item, class: "form-inline", local: true do |f| %>
       <%= f.hidden_field :item_id, value: cart_item.item.id %>
-      <%= f.number_field :amount, min: 1, id: "cart_item-#{cart_item.id}", class: "width-50" %>
+      <%= f.number_field :amount, min: 1, id: "cart_item-#{cart_item.id}", class: "form-control width-50" %>
       <%= f.submit "変更", class: "btn btn-primary", id: "cart_item-update-#{cart_item.id}" %>
     <% end %>
   </td>
