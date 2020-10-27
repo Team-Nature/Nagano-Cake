@@ -10,14 +10,17 @@
   </head>
 
   <body>
-    <div class="container">
+    <div class="container body-line">
       <div class="row">
-        <%= render "layouts/header" %>
+        <div class="header-line">
+          <%= render "layouts/header" %>
+        </div>
       </div>
       
       <div class="row">
         <%= yield %>
       </div>
+      <footer></footer>
     </div>
   </body>
 </html>
