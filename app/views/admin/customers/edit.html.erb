@@ -1,4 +1,5 @@
 <div class="col-md-10 col-md-offset-1">
+<%= render "layouts/error", resource: @customer %>
 <section class="customer-edit">
   <h3 class="page-heading margin-bottom-xs"><span>&emsp;<%= @customer.full_name_without_space %>の会員情報編集&emsp;</span></h3>
     <%= form_with model: @customer, url: admin_customer_path(@customer), local: true do |f| %>

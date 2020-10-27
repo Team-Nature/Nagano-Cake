@@ -27,6 +27,7 @@ class Public::CustomersController < ApplicationController
     if @customer.update(customer_params)
       redirect_to customers_path(@customer), notice: "You have updated user successfully."
     else
+      @customer.reload
       render "edit"
     end
   end

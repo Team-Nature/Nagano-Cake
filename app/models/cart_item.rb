@@ -2,7 +2,8 @@ class CartItem < ApplicationRecord
   belongs_to :customer
   belongs_to :item
     
-  validates :amount, presence: true, numericality: true
+  validates :amount, numericality: true
+
   def price_with_tax
     (self.item.price * 1.1).floor
   end
