@@ -3,53 +3,54 @@
 <div class="col-sm-offset-1 col-sm-8">
 
 <div class="">
-<h3>マイページ</h3>
+<h3 class="page-heading margin-bottom-sm"><span>&emsp;マイページ&emsp;</span></h3>
 </div>
 
 
 <p>
-<h3>登録情報
+<h4><b>登録情報</b>
 <%= link_to " 編集する", edit_customers_path, class: "btn btn-primary" %>
-<%= link_to " パスワードを変更する", edit_customer_registration_path, class: "btn btn-primary" %></h3>
+<%= link_to " パスワードを変更する", edit_customer_registration_path, class: "btn btn-primary" %></h4>
 </p>
 
 <table class="table table-bordered table-condensed" >
  <tbody>
   <tr>
-     <td class="info col-sm-2">氏名</td>
+     <td class="colored col-sm-2">氏名</td>
      <td><%= @customer.last_name %> <%= @customer.first_name %></td>
   </tr>
   <tr>
-     <td class="info col-sm-2">カナ</td>
+     <td class="colored col-sm-2">カナ</td>
      <td><%= @customer.last_name_kana %> <%= @customer.first_name_kana %></td>
    </tr>
    <tr>
    <tr>
-     <td class="info col-sm-2">郵便番号</td>
+     <td class="colored col-sm-2">郵便番号</td>
      <td><%= @customer.postcode %></td>
    </tr>
    <tr>
-     <td class="info col-sm-2">住所</td>
+     <td class="colored col-sm-2">住所</td>
      <td><%= @customer.address %></td>
    </tr>
    <tr>
-     <td class="info col-sm-2">電話番号</td>
+     <td class="colored col-sm-2">電話番号</td>
      <td><%= @customer.tel %></td>
    </tr>
    <tr>
-     <td class="info col-sm-2">メールアドレス</td>
+     <td class="colored col-sm-2">メールアドレス</td>
      <td><%= @customer.email %></td>
   </tr>
  </tbody>
 </table>
 
-<p>配送先&emsp;
+<h4><b>配送先</b>&emsp;
  &emsp;<%= link_to " 一覧を見る", deliveries_path, class: "btn btn-primary" %>
-</p>
-<p>
-注文履歴
+</h4>
+
+<h4>
+<b>注文履歴</b>
 &emsp;<%= link_to " 一覧を見る", orders_path, class: "btn btn-primary" %>
-</p>
+</h4>
 </div>
 </div>
 </div>

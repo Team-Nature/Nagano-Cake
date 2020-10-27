@@ -7,21 +7,19 @@
 
 <div class="col-md-10 col-md-offset-1">
 
- <h3>ショッピングカート
+ <h3 class="page-heading margin-bottom-sm"><span>&emsp;ショッピングカート&emsp;</span>
  <%= link_to "カートを空にする", cart_items_path, method: :delete, class: "btn btn-danger pull-right" %>
  </h3>
 
  <br>
 
-<table class="table table-bordered table-condensed">
-  <thead>
-    <tr>
-      <th class="info">商品名</th>
-      <th class="info">単価(税込)</th>
-      <th class="info">数量</th>
-      <th class="info">小計</th>
-      <th class="info"></th>
-    </tr>
+<table class="table table-condensed table-bordered">
+  <thead class="row">
+      <th class="col-sm-4">商品名</th>
+      <th class="col-sm-2">単価(税込)</th>
+      <th class="col-sm-2">数量</th>
+      <th class="col-sm-2">小計</th>
+      <th class="col-sm-2"></th>
   </thead>
   <tbody>
   <%= render @cart_items %>
@@ -36,7 +34,7 @@
   <div class="col-sm-3 col-sm-offset-6">
   <table class="table table-bordered table-condensed">
   <tr>
-    <th class="info">合計金額</th><td class="cart-item-total-price"><%= CartItem.total_price_with_tax(current_customer).to_s(:delimited) %></td>
+    <th class="colored">合計金額</th><td class="cart-item-total-price"><%= CartItem.total_price_with_tax(current_customer).to_s(:delimited) %></td>
   </tr>
   </table>
   </div>

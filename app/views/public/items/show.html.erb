@@ -13,27 +13,27 @@
 
 <div class="col-sm-10">
 
-
+<div class="row">
 <div class="col-sm-6">
 <p><%= attachment_image_tag(@item, :image, size: "360x240", fallback: "/assets/images/noimage.jpg") %></p>
 </div>
+<div class="col-sm-6">
+<h3><b><%= @item.name %></b></h3>
 
-<h1><%= @item.name %></h1>
+<p class="item-description font-size-15"><%= @item.description %></p>
 
-<h4><%= @item.description %></h4>
-
-<h2>￥<%= @item.price %>(税込)</h2>
+<h3 class="margin-bottom-sm">￥<%= @item.price.to_s(:delimited) %><small>(税込)</small></h3>
 
 
 
-<div class="col-sm-10 text-right">
+<div class="text-right">
 
  <% if @item.is_active == true %>
  <% if @item.category.is_active == true %>
 
- <%= form_with model: @cart_item, local: true do |f| %>
+ <%= form_with model: @cart_item, class: "form-inline", local: true do |f| %>
     <%= f.hidden_field :item_id, value: @item.id %>
-    <%= f.select :amount, options_for_select((1..5).to_a), include_blank: "個数選択" %>
+    <%= f.select :amount, options_for_select((1..5).to_a), { include_blank: "個数選択" }, { class: "form-control" } %>
     <%= f.submit "カートに入れる", class: " btn btn-primary" %>
   <% end %>
 
@@ -43,6 +43,8 @@
 <% end %>
 <% end %>
 
+</div>
+</div>
 </div>
 
     </div>
