@@ -142,30 +142,30 @@ table.no-border tr th, td{
 	display: inline-block;
 }
 
-.page-n {
-	text-align: center;
+.pagination{
+	margin: 0 auto;
 }
 
 .pagination {
 	a {text-decoration: none;
 	border-radius: 50%;
-	width: 200px;
-	height: 100px;
+
 
 &:active {
   text-decoration: none;
   border-radius: 50%;
-	width: 200px;
-	height: 100px;
 	background-color: rgb(51, 122, 183)
 }
 &:hover {
 	text-decoration: none;
 	border-radius: 50%;
-	width: 200px;
-	height: 100px;
 	background-color: rgb(62, 64, 66)
 }
 }
 }
 
+.field_with_errors input{
+	display: table-cell;
+	background-color: rgb(249, 116, 116);
+	padding: 2px;
+}
