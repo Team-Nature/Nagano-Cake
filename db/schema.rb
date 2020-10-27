@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 2020_10_15_085401) do
   create_table "items", force: :cascade do |t|
     t.integer "category_id"
     t.string "name", null: false
-    t.string "image_id", null: false
+    t.string "image_id"
     t.text "description", null: false
     t.integer "price", null: false
     t.datetime "created_at", null: false
@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(version: 2020_10_15_085401) do
     t.string "deliver_postcode", null: false
     t.string "deliver_address", null: false
     t.string "deliver_name", null: false
-    t.integer "deliver_fee", null: false
+    t.integer "deliver_fee", default: 800, null: false
     t.integer "total_price", null: false
     t.integer "how_to_pay", default: 0, null: false
     t.integer "status", default: 0, null: false

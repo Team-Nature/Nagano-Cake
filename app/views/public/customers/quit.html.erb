@@ -2,9 +2,9 @@
   <div class="row">
     <div class="col-sm-12">
 
-<div class="text-center">
+<div class="text-center margin-top-lg">
 
-<h4>本当に退会しますか?</h4>
+<h4><b>本当に退会しますか?</b></h4>
 
 <br>
 
@@ -14,13 +14,17 @@
 
 <br>
 
-<p>
-<%= link_to "退会しない", customers_path, class: 'btn btn-primary' %><br>
-<%= form_with model: @customer, url: out_path, local: true do |f| %>
-    <%= f.hidden_field :is_active, value: false %>
-<%= f.submit "退会する", class: "btn btn-danger", data: {confirm: "本当に退会しますか？" } %>
-<% end %>
-</p>
+<div class="row">
+  <div class="col-sm-6 text-right">
+    <%= link_to "退会しない", customers_path, class: 'btn btn-primary' %>
+  </div>
+  <div class="col-sm-6 text-left">
+    <%= form_with model: @customer, url: out_path, local: true do |f| %>
+      <%= f.hidden_field :is_active, value: false %>
+      <%= f.submit "退会する", class: "btn btn-danger", data: {confirm: "本当に退会しますか？" } %>
+    <% end %>
+  </div>
+</div>
 
 </div>
    </div>

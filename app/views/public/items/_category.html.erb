@@ -1,5 +1,5 @@
 <table class="table table-bordered category-table">
-  <thead><tr><th>ジャンル検索</th></tr></thead>
+  <thead class="no-color"><tr><th class="text-center">ジャンル検索</th></tr></thead>
   <tbody>
     <% Category.all.each do |category| %>
       <tr><td><%= link_to category.name, search_path(category) %></td></tr>
