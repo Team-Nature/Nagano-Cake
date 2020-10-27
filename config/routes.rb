@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
   #顧客
   namespace :admin do
-  resources :customers, only: [:show, :edit, :update, :index]
+    resources :customers, only: [:show, :edit, :update, :index]
   end
 
   scope module: :public do
@@ -47,7 +47,8 @@ Rails.application.routes.draw do
   end
 
   #注文
-  namespace :admin do
+  namespace :admin do    
+    get "orders/today" => "orders#today"
     resources :orders, only: [:index, :show, :update]
   end
 

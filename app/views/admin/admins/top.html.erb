@@ -3,7 +3,7 @@
 
     <h3 class="page-heading margin-bottom-lg"><span>&emsp;管理者画面&emsp;</span></h3>
 
-    <h3>本日の注文件数&emsp;&emsp;&emsp;&emsp;&emsp;<%= link_to orders_path, class: "link-today-order" do %><%= @count %><% end %>件</h3>
+    <h3>本日の注文件数&emsp;&emsp;&emsp;&emsp;&emsp;<%= link_to admin_orders_today_path, class: "link-today-order" do %><%= @count %><% end %>件</h3>
 
   </div>
 </div>
