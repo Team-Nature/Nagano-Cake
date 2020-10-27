@@ -123,3 +123,8 @@ table.no-border tr th, td{
 }
 }
 
+.field_with_errors input{
+	display: table-cell;
+	background-color: rgb(249, 116, 116);
+	padding: 2px;
+}

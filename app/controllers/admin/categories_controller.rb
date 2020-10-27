@@ -14,7 +14,6 @@ class Admin::CategoriesController < ApplicationController
       @categories = Category.all
       render "new"
     end
-    debugger
   end
   
   def edit
@@ -23,8 +22,11 @@ class Admin::CategoriesController < ApplicationController
   
   def update
     @category = Category.find(params[:id])
-    @category.update(category_params)
-    redirect_to new_admin_category_path
+    if @category.update(category_params)
+      redirect_to new_admin_category_path
+    else
+      render "edit"
+    end
   end
   
   private

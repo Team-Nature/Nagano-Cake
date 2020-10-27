@@ -8,7 +8,7 @@ class Item < ApplicationRecord
   validates :name, presence: true
   # validates :image_id, presence: true
   validates :description, presence: true
-  validates :price, presence: true, numericality: true
+  validates :price, numericality: true
   validates :is_active, inclusion: { in: [true, false] }
 
 def price_with_tax
