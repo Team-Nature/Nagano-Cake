@@ -7,7 +7,7 @@ class Admin::OrdersController < ApplicationController
   end
 
   def today
-    @orders = Order.today
+    @orders = Order.today.page(params[:page]).per(10)
     render "index"
   end
 
