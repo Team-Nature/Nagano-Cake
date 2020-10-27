@@ -47,15 +47,22 @@ $(function(){
     reader.readAsDataURL(e.target.files[0]);
   });
 
-  // $("input[name='order[addresses]']").change(function(){
-  //   if($("#order_addresses_new_address").prop("checked")){
-  //     $("#order_deliver_postcode").prop("disabled", false);
-  //     $("#order_deliver_address").prop("disabled", false);
-  //     $("#order_deliver_name").prop("disabled", false);
-  //   }else{
-  //     $("#order_deliver_postcode").prop("disabled", true);
-  //     $("#order_deliver_address").prop("disabled", true);
-  //     $("#order_deliver_name").prop("disabled", true);
-  //   }
-  // })
+  $("input[name='order[addresses]']").change(function(){
+    if($("#order_addresses_new_address").prop("checked")){
+      $("#order_select_address").prop("disabled", true);
+      $("#order_deliver_postcode").prop("disabled", false);
+      $("#order_deliver_address").prop("disabled", false);
+      $("#order_deliver_name").prop("disabled", false);
+    }else if($("#order_addresses_deliver_address").prop("checked")){
+      $("#order_select_address").prop("disabled", false)
+      $("#order_deliver_postcode").prop("disabled", true);
+      $("#order_deliver_address").prop("disabled", true);
+      $("#order_deliver_name").prop("disabled", true);
+    }else{
+      $("#order_select_address").prop("disabled", true)
+      $("#order_deliver_postcode").prop("disabled", true);
+      $("#order_deliver_address").prop("disabled", true);
+      $("#order_deliver_name").prop("disabled", true);
+    }
+  })
 });
