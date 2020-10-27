@@ -3,7 +3,9 @@ Rails.application.routes.draw do
     sessions: "admins/sessions",
     registrations: "admins/registrations"
   }
-  devise_for :customers, path: "auth"
+  devise_for :customers, path: "auth", controllers: {
+    registrations: "customers/registrations"
+  }
 
   namespace :admin do  #管理者ログイン
     resources :order_items, only: [:update]

@@ -91,7 +91,35 @@ table.no-border tr th, td{
 }
 
 .item-description{
-	width: 300px; 
-	overflow-wrap: anywhere; 
+	width: 300px;
+	overflow-wrap: anywhere;
 	display: inline-block;
 }
+
+.page-n {
+	text-align: center;
+}
+
+.pagination {
+	a {text-decoration: none;
+	border-radius: 50%;
+	width: 200px;
+	height: 100px;
+
+&:active {
+  text-decoration: none;
+  border-radius: 50%;
+	width: 200px;
+	height: 100px;
+	background-color: rgb(51, 122, 183)
+}
+&:hover {
+	text-decoration: none;
+	border-radius: 50%;
+	width: 200px;
+	height: 100px;
+	background-color: rgb(62, 64, 66)
+}
+}
+}
+

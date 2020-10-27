@@ -29,8 +29,23 @@ class ApplicationController < ActionController::Base
       devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :first_name_kana, :last_name_kana, :email, :postcode, :address, :tel])
 
   		devise_parameter_sanitizer.permit(:sign_in, keys: [:email])
-
     end
-  
-  
+    
+    def delete_session
+      if session[:how_to_pay].present?
+        session.delete(:how_to_pay)
+      end
+      if session[:deliver_postcode].present?
+        session.delete(:deliver_postcode)
+      end
+      if session[:delviver_address].present?
+        session.delete(:deliver_address)
+      end
+      if session[:deliver_name].present?  
+        session.delete(:deliver_name)
+      end
+      if session[:addresses].present?
+        session.delete(:addresses)
+      end
+    end
 end
