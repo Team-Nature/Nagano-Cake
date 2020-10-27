@@ -4,8 +4,10 @@
       <h1>注文情報入力</h1>
     </div>
   </div>
+  <% if notice.present? %>
+    <p class="notice"><%= notice %></p>
+  <% end %>
   <%= form_with model: @order, url: log_path, method: :post, local: true  do |f| %>
-  
     <div class="row">
       <div class="col-sm-12">
         <h3>支払い方法</h3>
@@ -41,7 +43,7 @@
         <div class="row">
           <div class="col-sm-10 col-sm-offset-1">
             <div class="form-group">
-              <%= f.select :select_address, current_customer.deliveries.all.map { |address| ["#{address.postcode} #{address.address} #{address.name}", address.id] }, {}, { class: "form-control" } %>
+              <%= f.select :select_address, current_customer.deliveries.all.map { |address| ["#{address.postcode} #{address.address} #{address.name}", address.id] }, {}, { class: "form-control", disabled: true } %>
             </div>
           </div>
         </div>
@@ -63,7 +65,7 @@
           </div>
           <div class="col-sm-4">
             <div class="form-group">
-              <%= f.text_field :deliver_postcode, class: "form-control" %>
+              <%= f.text_field :deliver_postcode, class: "form-control", disabled: true %>
             </div>
           </div>
           <div class="col-sm-4"></div>
@@ -77,7 +79,7 @@
           </div>
           <div class="col-sm-8">
             <div class="form-group">            
-              <%= f.text_field :deliver_address, class: "form-control" %>
+              <%= f.text_field :deliver_address, class: "form-control", disabled: true %>
             </div>
           </div>
         </div>
@@ -90,7 +92,7 @@
           </div>
           <div class="col-sm-4">
             <div class="form-group">
-              <%= f.text_field :deliver_name, class: "form-control" %>
+              <%= f.text_field :deliver_name, class: "form-control", disabled: true %>
             </div>
           </div>
           <div class="col-sm-4"></div>
