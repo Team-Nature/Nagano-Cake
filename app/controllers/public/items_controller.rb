@@ -1,5 +1,6 @@
 class Public::ItemsController < ApplicationController
-
+  before_action :delete_session
+  
   def index
     @items = Item.page(params[:page])
     @title = "商品"
