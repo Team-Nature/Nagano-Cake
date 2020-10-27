@@ -5,17 +5,9 @@
 <%= form_with model:@delivery, local: true do |f| %>
 
 	<!-- エラーメッセージ表示-->
-	<% if @delivery.errors.any? %>
-		<div id="error_explanation">
-			<h3><%= @delivery.errors.count %>error prohibited this obj from being saved:</h3>
-			<ul>
-				<% @delivery.errors.full_messages.each do |message| %>
-				<li><%= message %></li>
-				<% end %>
-			</ul>
-		</div>
-	<% end %>
+	<%= render "layouts/error", resource: @delivery %>
 	<!-- エラーメッセージ表示-->
+	
 <div class="row">
   <div class="field form-group col-sm-10 col-sm-offset-1">
     <%= f.label :postcode, "郵便番号(ハイフンなし)", class: "col-sm-3 control-label" %>
