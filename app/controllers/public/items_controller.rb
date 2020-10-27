@@ -1,5 +1,6 @@
 class Public::ItemsController < ApplicationController
-
+  before_action :delete_session
+  
   def index
     @items = Item.all
     @title = "商品"
