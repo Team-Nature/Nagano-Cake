@@ -2,6 +2,11 @@ class Admin::OrdersController < ApplicationController
   before_action :authenticate_admin! 
   def index
     @orders = Order.all.order(id: :desc)
+  end  
+  
+  def today
+    @orders = Order.today
+    render "index"
   end
   
   def show
