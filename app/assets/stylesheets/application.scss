@@ -29,6 +29,18 @@ table thead{
   background-color: #eeeeee;
 }
 
+.no-color{
+	background-color: #ffffff !important;
+}
+
+.colored{
+	background-color: #eeeeee;
+}
+
+.margin-top-lg{
+	margin-top: 150px;
+}
+
 .margin-bottom-xs{
 	margin-bottom: 15px;
 }
@@ -37,12 +49,36 @@ table thead{
 	margin-bottom: 30px;
 }
 
+.margin-left-lg{
+	margin-left: 130px;
+}
+
+.margin-left-md{
+	margin-left: 50px;
+}
+
+.margin-left-sm{
+	margin-left: 30px;
+}
+
 .vertical-align-top{
 	vertical-align: top;
 }
 
+th, td{
+	vertical-align: middle !important;
+}
+
 .font-size-20{
   font-size: 20px;
+}
+
+.font-size-15{
+	font-size: 15px;
+}
+
+.width-50{
+	width: 50px !important;
 }
 
 .link-format{
@@ -51,5 +87,11 @@ table thead{
 }
 
 table.no-border tr th, td{
-	border: none !important;
+	border: none;
+}
+
+.item-description{
+	width: 300px; 
+	overflow-wrap: anywhere; 
+	display: inline-block;
 }

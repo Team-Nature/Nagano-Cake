@@ -2,7 +2,7 @@
 <div class="row">
   <div class="col-sm-offset-1 col-sm-12">
 
-<h4>新規会員登録</h4>
+<h3 class="margin-bottom-sm page-heading"><span>&emsp;新規会員登録&emsp;</h3>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
@@ -11,52 +11,53 @@
 <thead>
 
   <div class="field form-group col-sm-12">
-    <%= f.label :名前, class: "col-sm-2 control-label" %>
-    <%= f.label :"(姓)", class: "col-sm-1 control-label"%>
+    <%= f.label :last_name, "名前",  class: "col-sm-2 control-label" %>
+    <%= f.label :last_name, "(姓)", class: "col-sm-1 control-label"%>
     <%= f.text_field :last_name, autofocus: true, autocomplete: "name" , class: "col-sm-3 form-control-label" %>
-    <%= f.label :"(名)", class: "col-sm-1 control-label" %>
-    <%= f.text_field :first_name, autofocus: true, autocomplete: "name", class: "col-sm-3 form-control-label" %>
+    <%= f.label :first_name, "(名)", class: "col-sm-1 control-label" %>
+    <%= f.text_field :first_name, autocomplete: "name", class: "col-sm-3 form-control-label" %>
   </div>
 
   <div class="field form-group col-sm-12">
-    <%= f.label :フリガナ, class: "col-sm-2 control-label" %>
-    <%= f.label :"(セイ)", class: "col-sm-1 control-label"%>
-    <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "name", class: "col-sm-3 form-control-label" %>
-    <%= f.label :"(メイ)", class: "col-sm-1 control-label"%>
-    <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "name", class: "col-sm-3 form-control-label" %>
+    <%= f.label :last_name_kana, "フリガナ", class: "col-sm-2 control-label" %>
+    <%= f.label :last_name_kana, "(セイ)", class: "col-sm-1 control-label"%>
+    <%= f.text_field :last_name_kana, autocomplete: "name", class: "col-sm-3 form-control-label" %>
+    <%= f.label :first_name_kana, "(メイ)", class: "col-sm-1 control-label"%>
+    <%= f.text_field :first_name_kana, autocomplete: "name", class: "col-sm-3 form-control-label" %>
   </div>
 
   <div class="field form-group col-sm-9">
-    <%= f.label :"郵便番号(ハイフンなし)", class: "col-sm-4 control-label" %>
-    <%= f.text_field :postcode, autofocus: true, class: "col-sm-4 control-label" %>
+    <%= f.label :postcode, "郵便番号(ハイフンなし)", class: "col-sm-4 control-label" %>
+    <%= f.text_field :postcode, class: "col-sm-4 control-label" %>
   </div>
 
   <div class="field form-group col-sm-12">
-    <%= f.label :住所, class: "col-sm-3 control-label" %>
-    <%= f.text_field :address, autofocus: true, autocomplete: "address", class: "col-sm-7 control-label" %>
+    <%= f.label :address, "住所", class: "col-sm-3 control-label" %>
+    <%= f.text_field :address, autocomplete: "address", class: "col-sm-7 control-label" %>
   </div>
 
   <div class="field form-group col-sm-9">
-    <%= f.label :"電話番号(ハイフンなし)", class: "col-sm-4 control-label" %>
-    <%= f.text_field :tel, autofocus: true, autocomplete: "tel", class: "col-sm-4 control-label" %>
+    <%= f.label :tel, "電話番号(ハイフンなし)", class: "col-sm-4 control-label" %>
+    <%= f.text_field :tel, autocomplete: "tel", class: "col-sm-4 control-label" %>
   </div>
 
   <div class="field form-group col-sm-9">
-    <%= f.label :メールアドレス, class: "col-sm-4 control-label" %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "col-sm-4 control-label" %>
+    <%= f.label :email, "メールアドレス", class: "col-sm-4 control-label" %>
+    <%= f.email_field :email, autocomplete: "email", class: "col-sm-4 control-label" %>
   </div>
 
   <div class="field form-group col-sm-9">
   <div class="col-sm-4 control-label">
-   <%= f.label :パスワード %>
+   <%= f.label :password, "パスワード" %>
    <% if @minimum_password_length %>
-    (<%= @minimum_password_length %>文字以上)
-    <% end %></div>
+    <b>(<%= @minimum_password_length %>文字以上)</b>
+    <% end %>
+  </div>
     <%= f.password_field :password, autocomplete: "new-password", class: "col-sm-4 control-label" %>
   </div>
 
   <div class="field form-group col-sm-9">
-    <%= f.label :"パスワード(確認用)", class: "col-sm-4 control-label" %>
+    <%= f.label :password_confirmation, "パスワード(確認用)", class: "col-sm-4 control-label" %>
     <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "col-sm-4 control-label" %>
   </div>
 
@@ -70,8 +71,7 @@
 
 <% end %>
 <div class="col-sm-9">
-<h4>既に登録済みの方</h4>
-<br>
+<h3 class="page-heading margin-bottom-xs"><span>&emsp;既に登録済みの方&emsp;</span></h3>
 <div class="col-sm-12 pull-right">
 <%= render "devise/shared/links" %>
 </div>

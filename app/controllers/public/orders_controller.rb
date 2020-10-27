@@ -21,7 +21,7 @@ class Public::OrdersController < ApplicationController
       @order.deliver_name = address.name
     else
       if order_params[:deliver_postcode].blank? ||  order_params[:deliver_address].blank? ||  order_params[:deliver_name].blank?
-        redirect_to new_order_path, notice: "お届け先項目に未入力の欄がございます。"
+        redirect_to new_order_path, alert: "お届け先項目に未入力の欄がございます。"
       else
       @order.deliver_postcode = order_params[:deliver_postcode]
       @order.deliver_address = order_params[:deliver_address]
