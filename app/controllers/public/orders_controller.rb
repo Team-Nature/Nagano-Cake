@@ -20,18 +20,19 @@ class Public::OrdersController < ApplicationController
       @order.deliver_address = address.address
       @order.deliver_name = address.name
     else
-    @order.deliver_postcode = order_params[:deliver_postcode]
-    @order.deliver_address = order_params[:deliver_address]
-    @order.deliver_name = order_params[:deliver_name]
+      if order_params[:deliver_postcode].blank? ||  order_params[:deliver_address].blank? ||  order_params[:deliver_name].blank?
+        redirect_to new_order_path, notice: "お届け先項目に未入力の欄がございます。"
+      else
+      @order.deliver_postcode = order_params[:deliver_postcode]
+      @order.deliver_address = order_params[:deliver_address]
+      @order.deliver_name = order_params[:deliver_name]
+      end
     end
     session[:how_to_pay] = @order.how_to_pay
     session[:deliver_postcode] = @order.deliver_postcode
     session[:deliver_address] = @order.deliver_address
     session[:deliver_name] = @order.deliver_name
     session[:addresses] = order_params[:addresses]
-
-
-
   end
 
   def create
