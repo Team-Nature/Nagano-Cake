@@ -1,5 +1,7 @@
 class Public::OrdersController < ApplicationController
-
+  before_action :authenticate_customer!
+  before_action :delete_session, except: [:log, :create]
+  
   def new
     @order = current_customer.orders.new
   end
@@ -50,11 +52,6 @@ class Public::OrdersController < ApplicationController
       if session[:addresses] == "new_address"
         current_customer.deliveries.create(postcode: @order.deliver_postcode, address: @order.deliver_address, name: @order.deliver_name)
       end
-      session.delete(:how_to_pay)
-      session.delete(:deliver_postcode)
-      session.delete(:deliver_address)
-      session.delete(:deliver_name)
-      session.delete(:addresses)
       redirect_to thanks_path
     else
       render "log"

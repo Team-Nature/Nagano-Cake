@@ -1,6 +1,6 @@
 class Public::CustomersController < ApplicationController
   before_action :authenticate_customer!
-  
+  before_action :delete_session
   def show
     @customer = current_customer
   end
