@@ -16,11 +16,14 @@ class Public::OrdersController < ApplicationController
       @order.deliver_address = current_customer.address
       @order.deliver_name = current_customer.full_name
     elsif order_params[:addresses] == "deliver_address"
-      # address = order_params[select_address].split
-      address = Delivery.find(order_params[:select_address])
-      @order.deliver_postcode = address.postcode
-      @order.deliver_address = address.address
-      @order.deliver_name = address.name
+      if order_params[:select_address].blank?
+        redirect_to new_order_path, alert: "選択されたお届け先は存在しません。"
+      else
+        address = Delivery.find(order_params[:select_address])
+        @order.deliver_postcode = address.postcode
+        @order.deliver_address = address.address
+        @order.deliver_name = address.name
+      end
     else
       if order_params[:deliver_postcode].blank? ||  order_params[:deliver_address].blank? ||  order_params[:deliver_name].blank?
         redirect_to new_order_path, alert: "お届け先項目に未入力の欄がございます。"

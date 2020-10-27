@@ -3,22 +3,10 @@
   <div class="row">
 <div class="col-sm-10 col-sm-offset-1">
   <h3 class="page-heading margin-bottom-sm"><span>&emsp;登録情報編集&emsp;</h3>
+  <%= render "layouts/error", resource: @customer %>
 </div>
 <br>
 <%= form_with model: @customer, url: customers_path, local: true, method: :patch do |f| %>
-
-	<!-- エラーメッセージ表示-->
-	<% if @customer.errors.any? %>
-		<div id="error_explanation">
-			<h3><%= @customer.errors.count %>error prohibited this obj from being saved:</h3>
-			<ul>
-				<% @customer.errors.full_messages.each do |message| %>
-				<li><%= message %></li>
-				<% end %>
-			</ul>
-		</div>
-	<% end %>
-	<!-- エラーメッセージ表示-->
 
 <div class="row">
   <div class="col-sm-10 col-sm-offset-1">

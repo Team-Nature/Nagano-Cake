@@ -46,7 +46,6 @@ class Customers::RegistrationsController < Devise::RegistrationsController
           customer.update(email: "DELETE_#{ Time.now.to_s.gsub(" ", "") }_#{ customer.email }")
         end
       end
-      debugger
     end
         
   # If you have extra params to permit, append them to the sanitizer.
