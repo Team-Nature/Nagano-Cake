@@ -1,6 +1,7 @@
 class Public::DeliveriesController < ApplicationController
   before_action :authenticate_customer!
-
+  before_action :delete_session
+  
   def index
     @delivery = current_customer.deliveries.new
     @deliveries = current_customer.deliveries.all

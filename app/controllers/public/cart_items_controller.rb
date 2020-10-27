@@ -1,6 +1,6 @@
 class Public::CartItemsController < ApplicationController
   before_action :authenticate_customer!
-  
+  before_action :delete_session
   def index
     @cart_items = current_customer.cart_items.all
   end
