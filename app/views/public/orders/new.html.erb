@@ -4,8 +4,8 @@
       <h3 class="margin-bottom-sm page-heading"><span>&emsp;注文情報入力&emsp;</h3>
     </div>
   </div>
-  <% if notice.present? %>
-    <p class="notice"><%= notice %></p>
+  <% if alert.present? %>
+    <p class="alert"><%= alert %></p>
   <% end %>
   <%= form_with model: @order, url: log_path, method: :post, local: true  do |f| %>
     <div class="row">

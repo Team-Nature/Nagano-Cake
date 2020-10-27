@@ -8,17 +8,23 @@
 
     <div class="field form-group col-sm-9">
       <%= f.label :postcode, "郵便番号(ハイフンなし)", class: "col-sm-4 control-label" %>
-      <%= f.text_field :postcode, autofocus: true, class: "col-sm-4 control-label" %>
+      <div class="col-sm-4">
+        <%= f.text_field :postcode, autofocus: true, class: "form-control" %>
+      </div>
     </div>
 
     <div class="field form-group col-sm-12">
       <%= f.label :address, "住所", class: "col-sm-3 control-label" %>
-      <%= f.text_field :address, autofocus: true, autocomplete: "delivery_address", class: "col-sm-6 control-label" %>
+      <div class="col-sm-6">
+        <%= f.text_field :address, autofocus: true, autocomplete: "delivery_address", class: "form-control" %>
+      </div>
     </div>
 
     <div class="field form-group col-sm-12">
         <%= f.label :name, "宛名", class: "col-sm-3 control-label" %>
-        <%= f.text_field :name, autofocus: true, autocomplete: "delivery_name" , class: "col-sm-3 form-control-label" %>
+        <div class="col-sm-3">
+          <%= f.text_field :name, autofocus: true, autocomplete: "delivery_name" , class: "form-control" %>
+        </div>
       <div class="actions col-sm-6">
         <%= f.submit "登録する",class: 'btn btn-success col-sm-4 col-sm-offset-6'  %>
       </div>
