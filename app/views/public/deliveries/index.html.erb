@@ -1,0 +1,70 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+      <%= render "layouts/error", resource: @delivery %>
+      <h3 class="page-heading margin-bottom-sm"><span>&emsp;配送先登録/一覧&emsp;</h3>
+    </div>
+  </div>
+
+  <%= form_with model:@delivery, local: true do |f| %>
+    <div class="row">
+      <%= f.label :postcode, "郵便番号(ハイフンなし)", class: "col-sm-3 control-label" %>
+      <div class="col-sm-3">
+        <div class="form-group">
+          <%= f.text_field :postcode, autofocus: true, class: "form-control" %>
+        </div>
+      </div>
+      <div class="col-sm-6"></div>
+    </div>
+
+    <div class="row">
+      <%= f.label :address, "住所", class: "col-sm-3 control-label" %>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <%= f.text_field :address, autofocus: true, autocomplete: "delivery_address", class: "form-control" %>
+        </div>
+      </div>
+    </div>
+  
+    <div class="row">
+      <%= f.label :name, "宛名", class: "col-sm-3 control-label" %>
+      <div class="col-sm-3">
+        <%= f.text_field :name, autofocus: true, autocomplete: "delivery_name" , class: "form-control" %>
+      </div>
+      <div class="actions col-sm-6">
+        <%= f.submit "登録する",class: 'btn btn-success col-sm-4 col-sm-offset-6'  %>
+      </div>
+    </div>
+  <% end %>
+
+  <br><br><br>
+
+  <div class="row">
+    <div class="col-sm-10">
+      <table class='table table-bordered'>
+        <thead class="row">
+          <th class ="col-sm-2">郵便番号</th>
+          <th class ="col-sm-4">住所</th>
+          <th class ="col-sm-2">宛名</th>
+          <th class ="col-sm-3"></th>
+        </thead>
+        <tbody>
+          <% @deliveries.each do |delivery| %>
+            <tr>
+              <td><%= delivery.postcode %></td>
+              <td><%= delivery.address %></td>
+              <td><%= delivery.name %></td>
+              <td>
+                <div class="row text-center">
+                  <%= link_to "編集する", edit_delivery_path(delivery), class: "btn btn-sm btn-primary" %>
+                  <%= link_to "削除する", delivery_path(delivery), method: :delete, class: "btn btn-sm btn-danger" %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="col-sm-2"></div>
+    </div>
+  </div>
+</div>

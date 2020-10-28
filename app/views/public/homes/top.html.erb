@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="category-container">
+      <% if notice.present? %>
+        <div class="notice"><%= notice %></div>
+      <% end %>
+      <% if alert.present? %>
+        <div class="alert"><%= alert %></div>
+      <% end %>
+
+        <div class="row">
+          <div class="col-sm-2  margin-top-sm">
+            <%= render "public/items/category" %>
+          </div>
+          <div class="col-sm-10">
+            <div class="top-text">
+              <div class="row">
+                <p class="well col-sm-8 margin-top-sm margin-left-sm" style="height: 300px; padding-top: 100px;">
+                  ようこそ、NaganoCakeへ！<br>
+                  このサイトは、ケーキ販売のECサイトになります。<br>
+                  会員でない方も商品の閲覧はできますが、<br>
+                  購入には会員登録が必要になります。<br>
+                </p>
+               <div class="col-sm-4"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="pick-up-items">
+            <h3><b>オススメ商品</b></h3>
+            <% @items.first(4).each do |item| %>
+              <div class="col-sm-3">
+                <%= link_to item_path(item.id) do %>
+                  <p><%= attachment_image_tag(item, :image, size: "200x150", fallback: "/assets/images/noimage.jpg") %></p>
+                  <p><%= item.name %></p>
+                  <p>￥<%= item.price.to_s(:delimited) %></p>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        
+      </div>
+      <p class="text-right"><u><%= link_to 'もっと見る>', "/items", class: "btn-link" %></u></p>
+    </div>
+  </div>
+</div>

@@ -13,4 +13,36 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+//= require jquery
+//= require bootstrap-sprockets
 //= require_tree .
+
+
+$(function(){
+  $("#item_image").on("change", function(e){
+    var reader = new FileReader();
+    reader.onload = function(e){
+      $(".image").attr("src", e.target.result);
+    }
+    reader.readAsDataURL(e.target.files[0]);
+  });
+
+  $("input[name='order[addresses]']").change(function(){
+    if($("#order_addresses_new_address").prop("checked")){
+      $("#order_select_address").prop("disabled", true);
+      $("#order_deliver_postcode").prop("disabled", false);
+      $("#order_deliver_address").prop("disabled", false);
+      $("#order_deliver_name").prop("disabled", false);
+    }else if($("#order_addresses_deliver_address").prop("checked")){
+      $("#order_select_address").prop("disabled", false)
+      $("#order_deliver_postcode").prop("disabled", true);
+      $("#order_deliver_address").prop("disabled", true);
+      $("#order_deliver_name").prop("disabled", true);
+    }else{
+      $("#order_select_address").prop("disabled", true)
+      $("#order_deliver_postcode").prop("disabled", true);
+      $("#order_deliver_address").prop("disabled", true);
+      $("#order_deliver_name").prop("disabled", true);
+    }
+  })
+});

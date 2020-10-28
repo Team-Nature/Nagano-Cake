@@ -1,0 +1,39 @@
+<div class="col-md-6">
+  <section class="customer-show">
+    <h3 class="page-heading margin-bottom-xs"><span>&emsp;<%= @customer.full_name_without_space %>さんの会員詳細&emsp;</span></h3>
+    <table class="table">
+      <tr>
+        <th style="border: none;">顧客ID</th>
+        <td style="border: none;">
+          <%= @customer.id %>
+          <% if @customer.is_active %>
+            <span class="label label-primary">有効会員</span>
+          <% else %>
+            <span class="label label-danger">無効会員</span>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <th style="border: none;">氏名</th><td style="border: none;"><%= @customer.last_name %> <%= @customer.first_name %></td>
+      </tr>
+      <tr>
+        <th style="border: none;">フリガナ</th><td style="border: none;"><%= @customer.last_name_kana %> <%= @customer.first_name_kana %></td>
+      </tr>
+      <tr>
+        <th style="border: none;">郵便番号</th><td style="border: none;"><%= @customer.postcode %></td>
+      </tr>
+      <tr>
+        <th style="border: none;">住所</th><td style="border: none;"><%= @customer.address %></td>
+      </tr>
+      <tr>
+        <th style="border: none;">電話番号</th><td style="border: none;"><%= @customer.tel %></td>
+      </tr>
+      <tr>
+        <th style="border: none;">メールアドレス</th><td style="border: none;"><%= @customer.email %></td>
+      </tr>
+    </table>
+    <%= link_to "編集する", edit_admin_customer_path(@customer), class: "btn btn-primary" %>
+    <%= link_to "注文履歴一覧を見る", admin_orders_path, class: "btn btn-primary" %>
+  </section>
+</div>
+<div class="col-md-6"></div>

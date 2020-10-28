@@ -1,0 +1,10 @@
+<table class="table table-bordered category-table">
+  <thead class="no-color"><tr><th class="text-center">ジャンル検索</th></tr></thead>
+  <tbody>
+    <% Category.all.each do |category| %>
+      <% if category.is_active %>
+        <tr><td><%= link_to category.name, search_path(category) %></td></tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

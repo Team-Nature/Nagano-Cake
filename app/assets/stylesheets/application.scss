@@ -1,0 +1,185 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.header-line {
+	border-bottom: solid black;
+}
+
+.body-line {
+	border: solid black;
+	width: 90%;
+}
+
+footer {
+	border-top: solid black;
+	color: black;
+  width: 100%;
+  height: 120px;
+  bottom: 0;
+}
+
+.box1 {
+	border: solid 3px;
+	color: black;
+}
+
+li.welcome-message{
+  margin-right: 50px;
+  padding: 15px;
+}
+
+.page-heading span{
+  background-color: #eeeeee;
+}
+
+table thead{
+  background-color: #eeeeee;
+}
+
+.no-color{
+	background-color: #ffffff !important;
+}
+
+.colored{
+	background-color: #eeeeee;
+}
+
+.margin-top-lg {
+	margin-top: 150px;
+}
+
+.margin-top-sm {
+	margin-top: 30px;
+}
+
+.margin-top-xs {
+	margin-top: 15px;
+}
+
+.margin-bottom-sm{
+	margin-bottom: 30px;
+}
+
+.margin-bottom-xs{
+	margin-bottom: 15px;
+}
+
+.margin-right-md{
+	margin-right: 50px;
+}
+
+.margin-right-sm{
+	margin-right: 30px;
+}
+
+.margin-right-xs {
+	margin-right: 15px;
+}
+
+.margin-left-lg{
+	margin-left: 130px;
+}
+
+.margin-left-xs{
+	margin-left: 15px;
+}
+
+.margin-left-md{
+	margin-left: 50px;
+}
+
+.margin-left-sm{
+	margin-left: 30px;
+}
+
+.vertical-align-top{
+	vertical-align: top;
+}
+
+th, td{
+	vertical-align: middle !important;
+}
+
+.font-size-20{
+  font-size: 20px;
+}
+
+.font-size-15{
+	font-size: 15px;
+}
+
+.font-size-30{
+	font-size: 30px;
+}
+
+.width-50{
+	width: 50px !important;
+}
+
+.width-70{
+	width: 70px !important;
+}
+
+.link-format{
+	color: inherit;
+	text-decoration: underline;
+}
+
+table.no-border tr th, td{
+	border: none;
+}
+
+.item-description{
+	width: 300px;
+	overflow-wrap: anywhere;
+	display: inline-block;
+}
+
+.pagination{
+	margin: 0 auto;
+}
+
+.pagination {
+	a {text-decoration: none;
+	border-radius: 50%;
+
+
+&:active {
+  text-decoration: none;
+  border-radius: 50%;
+	background-color: rgb(51, 122, 183)
+}
+&:hover {
+	text-decoration: none;
+	border-radius: 50%;
+	background-color: rgb(62, 64, 66)
+}
+}
+}
+
+.field_with_errors input{
+	display: table-cell;
+}
+
+.category_form .field_with_errors{
+	display: inline-block;
+}
+
+.row .form-inline .field_with_errors{
+	display: inline-block !important;
+}

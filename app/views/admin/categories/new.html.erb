@@ -1,0 +1,38 @@
+<div class="col-sm-12">
+  <section class="category_new">
+    <h3 class="margin-bottom-sm page-heading"><span>&emsp;ジャンル一覧・追加&emsp;</h3>
+    <%= render "layouts/error", resource: @category_new %>
+    <%= form_with model: @category_new, url: admin_categories_path, class: "form-inline margin-bottom-sm category_form", local: true do |f| %>
+      <%= f.label :name, "ジャンル", class: "control-label" %>
+      <%= f.text_field :name, class: "form-inline" %>
+      <%= f.radio_button :is_active, true, checked: true, class: "form-control" %>
+      <%= f.label :is_active, "有効", class: "control-label" %>
+      <%= f.radio_button :is_active, false, class: "form-control" %>
+      <%= f.label :is_active, "無効", class: "control-label" %>
+      <%= f.submit "追加", class: "btn btn-primary" %>
+    <% end %>
+  </section>
+  
+  <div class="row">
+    <div class="col-sm-5">
+      <div class="category-table">
+        <table class="table">
+          <thead>
+            <tr><th>ジャンル</th><th>状態</th><th></th></tr>
+          </thead>
+          <tbody>
+          <% @categories.each do |category| %>
+            <tr>
+              <td class="line-height-2-5"><%= category.name %></td>
+              <td class="line-height-2-5"><%= category.status %></td>
+              <td class="line-height-2-5"><%= link_to "編集する", edit_admin_category_path(category), class: "btn btn-primary" %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <div class="col-sm-7"></div>
+  </div>
+</div>
