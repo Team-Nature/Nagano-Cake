@@ -22,6 +22,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get '' => 'admins#top', as: "top"
+    post "search", to: "admins#search", as: "search"
+    get "search", to: "admins#result"
   end
 
   #顧客

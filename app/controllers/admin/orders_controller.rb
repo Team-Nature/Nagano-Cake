@@ -1,5 +1,7 @@
 class Admin::OrdersController < ApplicationController
   before_action :authenticate_admin!
+  before_action :delete_keyword_session
+
   def index
     # @orders = Order.all.order(id: :desc)
     @orders = Order.page(params[:page]).per(10)

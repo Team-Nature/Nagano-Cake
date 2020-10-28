@@ -1,5 +1,6 @@
 class Admin::OrderItemsController < ApplicationController
   before_action :authenticate_admin!
+  before_action :delete_keyword_session
 
   def update
     order_item = OrderItem.find(params[:id])

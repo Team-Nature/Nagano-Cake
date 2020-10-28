@@ -4,9 +4,11 @@
       <h3 class="margin-bottom-sm page-heading"><span>&emsp;注文情報入力&emsp;</h3>
     </div>
   </div>
+  
   <% if alert.present? %>
     <p class="alert"><%= alert %></p>
   <% end %>
+  
   <%= form_with model: @order, url: log_path, method: :post, local: true  do |f| %>
     <div class="row">
       <div class="col-sm-12">
@@ -27,7 +29,7 @@
           <%= f.radio_button :addresses, "address", checked: true, class: "form-control" %>
           <%= f.label :addresses_address, "ご自身の住所", class: "control-label" %>
           <p class="margin-left-md">
-            <%= "#{current_customer.address}" %>&nbsp; <%= "#{current_customer.address}" %><br>
+            <%= "#{current_customer.postcode}" %>&nbsp;<%= "#{current_customer.address}" %><br>
             <%= "#{current_customer.last_name}#{current_customer.first_name}" %>
           </p>
         </div>
@@ -71,9 +73,9 @@
                 </div>
               </div>
               <div class="col-sm-5"></div>
-              </div>
+            </div>
       
-            <div class="row" style="margin-left: 30px;">
+            <div class="row margin-left-sm">
               <div class="col-sm-3">
                 <div class="form-group">
                   <%= f.label :deliver_address, "住所", class: "control-label" %>
@@ -86,7 +88,7 @@
               </div>
             </div>
       
-            <div class="row" style="margin-left: 30px;">
+            <div class="row margin-left-sm">
               <div class="col-sm-3">  
                 <div class="form-group">
                   <%= f.label :deliver_name, "宛名", class: "control-label" %>

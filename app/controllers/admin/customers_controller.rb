@@ -1,5 +1,7 @@
 class Admin::CustomersController < ApplicationController
   before_action :authenticate_admin!
+  before_action :delete_keyword_session
+
 
   def update
     @customer = Customer.find(params[:id])
