@@ -17,27 +17,27 @@ RSpec.describe "Orders", type: :system do
       @cart_item3 = customer2.cart_items.create(item: item2, amount: 3) 
       @cart_item4 = customer2.cart_items.create(item: item3, amount: 4)
 
-      order1 = customer1.orders.new
-      order1.set_order_items
-      order1.deliver_postcode = "1110000"
-      order1.deliver_address = "滋賀県"
-      order1.deliver_name = "母"
-      order1.deliver_fee = 800
-      order1.how_to_pay = 0
-      order1.total_price = order1.get_whole_total_price
-      order1.status = 0
-      order1.save
+      @order1 = customer1.orders.new
+      @order1.set_order_items
+      @order1.deliver_postcode = "1110000"
+      @order1.deliver_address = "滋賀県"
+      @order1.deliver_name = "母"
+      @order1.deliver_fee = 800
+      @order1.how_to_pay = 0
+      @order1.total_price = @order1.get_total_price
+      @order1.status = 0
+      @order1.save
       
-      order2 = customer2.orders.new
-      order2.set_order_items
-      order2.deliver_postcode = "2220000"
-      order2.deliver_address = "京都府"
-      order2.deliver_name = "祖母"
-      order2.deliver_fee = 800
-      order2.how_to_pay = 1
-      order2.total_price = order2.get_whole_total_price
-      order2.status = 0
-      order2.save
+      @order2 = customer2.orders.new
+      @order2.set_order_items
+      @order2.deliver_postcode = "2220000"
+      @order2.deliver_address = "京都府"
+      @order2.deliver_name = "祖母"
+      @order2.deliver_fee = 800
+      @order2.how_to_pay = 1
+      @order2.total_price = @order2.get_total_price
+      @order2.status = 0
+      @order2.save
       
       visit new_admin_session_path
       fill_in "admin[email]", with: admin1.email
@@ -59,8 +59,8 @@ RSpec.describe "Orders", type: :system do
       end
       it "has order info and link" do
         Order.all.each do |order|
-          expect(page).to have_link order.created_at.strftime("%Y/%m%d %H:%M:%D"), href: admin_order_path(order)
-          expect(page).to have_content order.customer.last_name + order.customer.first_name
+          expect(page).to have_link order.created_at.strftime("%Y/%m/%d %H:%M:%S"), href: admin_order_path(order)
+          expect(page).to have_content order.customer.full_name
           expect(page).to have_content order.count_items
           expect(page).to have_content order.status
         end
@@ -68,21 +68,21 @@ RSpec.describe "Orders", type: :system do
     end
     context "on admin_order_edit page" do
       before do 
-        visit admin_order_path(order1)
+        visit admin_order_path(@order1)
       end
       it "has '注文履歴詳細'" do
         expect(page).to have_content "注文履歴詳細"
       end
       it "has header for order info" do
         expect(page).to have_content "購入者"
-        expect(page).to have_content "配送者"
-        expect(page).to have_conetnt "支払方法"
+        expect(page).to have_content "配送先"
+        expect(page).to have_content "支払方法"
         expect(page).to have_content "注文ステータス"
       end
       it "has info for order" do
       end
       it "has button for updating order status" do
-        expect(page).to have_css "update-order-status btn"
+        expect(page).to have_css ".update-order-status"
       end
       it "has table-heading for order_items" do
         expect(page).to have_content "商品名"
@@ -92,41 +92,44 @@ RSpec.describe "Orders", type: :system do
         expect(page).to have_content "製作ステータス"
       end
       it "has info for order_items" do
-        order1.order_items.each do |order_item|
+        @order1.order_items.each do |order_item|
           expect(page).to have_content order_item.item.name
           expect(page).to have_content order_item.price
           expect(page).to have_content order_item.amount
           expect(page).to have_content order_item.subtotal
           expect(page).to have_content order_item.status
-          expect(page).to have_css "update-make-status btn"
+          expect(page).to have_field "order_item_status_#{ order_item.id }", with: order_item.status
+          expect(page).to have_button "order_item_status_btn_#{ order_item.id }"
         end
       end
       it "has '商品合計'" do
         expect(page).to have_content "商品合計"
       end
       it "has total_price" do
-        expect(page).to have_content order1.total_price
+        expect(page).to have_content @order1.total_price.to_s(:delimited)
       end
       it "has '送料'" do
         expect(page).to have_content "送料"
       end
       it "has deliver_fee" do
-        expect(page).to have_content order1.deliver_fee
+        expect(page).to have_content @order1.deliver_fee
       end
       it "has '請求金額合計'" do
-        expect(page).to have_content order1.whole_total_price
+        expect(page).to have_content "請求金額合計"
+        expect(page).to have_content (@order1.get_whole_total_price).to_s(:delimited)
       end
       it "changes order_status" do
         select "発送済み", from: "order[status]"
         click_button "update-order-status"
-        expect(current_path).to eq admin_order_parh(order1)
+        expect(current_path).to eq admin_order_path(@order1)
+
         expect(page).to have_select("order[status]", selected: "発送済み")
       end
       it "changes order_item_status" do
-        select "製作中", from: "find_all(order_item[status])[0]"
-        click_button "find_all(更新)[0]"
-        expect(current_path).to eq admin_order_path(order1)
-        expect(page).to have_select("find_all(order[status])[0]", selected: "製作中")
+        select "製作中", from: "order_item_status_1"
+        click_button "order_item_status_btn_1"
+        expect(current_path).to eq admin_order_path(@order1)
+        expect(page).to have_select("order_item_status_1", selected: "製作中")
       end
     end
   end

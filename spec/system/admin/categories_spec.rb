@@ -22,8 +22,8 @@ RSpec.describe "AdminCategories", type: :system do
       end
       it "has category_form to add" do
         expect(page).to have_field "category[name]"
-        expect(page).to have_css "category_is_active_true"
-        expect(page).to have_css "category_is_active_false"
+        expect(page).to have_css "#category_is_active_true"
+        expect(page).to have_css "#category_is_active_false"
         expect(page).to have_button "追加"
       end
       it "has category-table-header" do
@@ -39,10 +39,9 @@ RSpec.describe "AdminCategories", type: :system do
       end
       it "adds new category" do
         fill_in "category[name]", with: "チョコレート"
-        choose "有効"
         click_button "追加"
-        # expect(current_path).to eq new_admin_category_path
-        # expect(page).to have_content "チョコレート"
+        expect(current_path).to eq new_admin_category_path
+        expect(page).to have_content "チョコレート"
       end
     end
     context "on category edit page" do
@@ -50,13 +49,13 @@ RSpec.describe "AdminCategories", type: :system do
         visit edit_admin_category_path(category1)
       end
       it "has 'ジャンル編集'" do
-        exepct(page).to have_content "ジャンル編集"
+        expect(page).to have_content "ジャンル編集"
       end
       it "has form for editing category" do
         expect(page).to have_field "category[name]"
-        expect(page).to have_css "category_is_active_true"
-        expect(page).to have_css "category_is_active_false"
-        expect(page).to have_ss "変更を保存する"
+        expect(page).to have_css "#category_is_active_true"
+        expect(page).to have_css "#category_is_active_false"
+        expect(page).to have_button "変更を保存する"
       end
       it "updates category status" do
         fill_in "category[name]", with: "ケーキ終了"
@@ -64,6 +63,7 @@ RSpec.describe "AdminCategories", type: :system do
         click_button "変更を保存する"
         expect(current_path).to eq new_admin_category_path
         expect(page).to have_content "ケーキ終了"
+        expect(page).to have_content ""
       end
     end
   end
