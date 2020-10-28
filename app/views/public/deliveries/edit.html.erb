@@ -1,46 +1,43 @@
 <div class=".col-sm-10 col-sm-offset-2">
   <h3 class="page-heading margin-bottom-sm"><span>&emsp;配送先編集&emsp;</span></h3>
 </div>
-
 <%= form_with model:@delivery, local: true do |f| %>
-
-	<!-- エラーメッセージ表示-->
 	<%= render "layouts/error", resource: @delivery %>
-	<!-- エラーメッセージ表示-->
-	
-<div class="row">
-  <div class="field form-group col-sm-10 col-sm-offset-1">
-    <%= f.label :postcode, "郵便番号(ハイフンなし)", class: "col-sm-3 control-label" %>
-    <div class="col-sm-3">
-      <%= f.text_field :postcode, autofocus: true, class: "form-control" %>
-    </div>
-    <div class="col-sm-5"></div>
-  </div>
-</div>
 
-<div class="row">
-  <div class="field form-group col-sm-10 col-sm-offset-1">
-    <%= f.label :address, "住所", class: "col-sm-3 control-label" %>
-    <div class="col-sm-6">
-      <%= f.text_field :address, autocomplete: "address", class: "form-control" %>
+  <div class="row">
+    <div class="field form-group col-sm-10 col-sm-offset-1">
+      <%= f.label :postcode, "郵便番号(ハイフンなし)", class: "col-sm-4 control-label" %>
+      <div class="col-sm-3">
+        <%= f.text_field :postcode, autofocus: true, class: "form-control" %>
+      </div>
+      <div class="col-sm-5"></div>
     </div>
   </div>
-</div>
 
-<div class="row">
-  <div class="field form-group col-sm-10 col-sm-offset-1">
-    <%= f.label :name, "宛名", class: "col-sm-3 control-label" %>
-    <div class="col-sm-3">
-    <%= f.text_field :name, autocomplete: "tel", class: "col-sm-8 form-control" %>
+  <div class="row">
+    <div class="field form-group col-sm-10 col-sm-offset-1">
+      <%= f.label :address, "住所", class: "col-sm-4 control-label" %>
+      <div class="col-sm-6">
+        <%= f.text_field :address, autocomplete: "address", class: "form-control" %>
+      </div>
+      <div class="col-sm-2"></div>
     </div>
   </div>
-</div>
 
-<div class="row">
-  <div class="actions col-sm-7 col-sm-offset-5">
-    <%= f.submit "編集する",class: 'btn btn-primary col-sm-4 pull-right'  %>
+  <div class="row">
+    <div class="field form-group col-sm-10 col-sm-offset-1">
+      <%= f.label :name, "宛名", class: "col-sm-4 control-label" %>
+      <div class="col-sm-3">
+        <%= f.text_field :name, autocomplete: "tel", class: "form-control" %>
+      </div>
+    </div>
   </div>
-</div>
-</tbody>
 
+  <div class="row">
+    <div class="actions">
+      <div class="col-sm-10 text-right">
+        <%= f.submit "編集する",class: 'btn btn-primary'  %>
+      </div>
+    </div>
+  </div>
 <% end %>
