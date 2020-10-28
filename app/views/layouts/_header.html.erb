@@ -1,35 +1,35 @@
-<header>
-  <nav class="navbar navbar-default">
-    <div class="navbar-header">
-      <%= link_to "LOGO", root_path, class: "navbar-brand" %>
+<div class = "row">
+<header class="col-sm-12">
+  <nav>
+    <div class="navbar-header col-sm-2">
+      <h1><%= link_to "LOGO", root_path, class: "navbar-left navbar-brand font-size-30 box1 margin-bottom-xs" %></h1>
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-header">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
       </button>
     </div>
-    <% if customer_signed_in? %>
-      <p class="text-center">ようこそ、<%= customer.full_name %>さん！</p>
-    <% end %>
     <div class="collapse navbar-collapse" id="navbar-header">
       <ul class="nav navbar-nav navbar-right">
         <% if customer_signed_in? %>
-          <li><%= link_to "マイページ", customer_path(current_customer) %></li>
-          <li><%= link_to "商品一覧", items_path %></li>
-          <li><%= link_to "カート", cart_items_path %></li>
-          <li><%= link_to "ログアウト", destroy_customer_session_path %></li>
+          <li class="welcome-message">ようこそ、<%= current_customer.full_name %>さん！</li>
+          <li><%= link_to "マイページ", customers_path(current_customer), class:'btn btn-default margin-top-xs margin-right-xs' %></li>
+          <li><%= link_to "商品一覧", items_path, class:'btn btn-default margin-top-xs margin-right-xs' %></li>
+          <li><%= link_to "カート", cart_items_path, class:'btn btn-default margin-top-xs margin-right-xs' %></li>
+          <li><%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class:'btn btn-default margin-top-xs margin-right-xs' %></li>
         <% elsif admin_signed_in? %>
-          <li><%= link_to "商品一覧", admin_items_path %></li>
-          <li><%= link_to "会員一覧", admin_customers_path %></li>
-          <li><%= link_to "注文履歴一覧", admin_orders_path %></li>
-          <li><%= link_to "ジャンル一覧", admin_ategories_path %></li>
-          <li><%= link_to "ログアウト", destroy_admin_session_path %></li>
+          <li><%= link_to "商品一覧", admin_items_path, class:'btn btn-default margin-top-xs margin-right-xs' %></li>
+          <li><%= link_to "会員一覧", admin_customers_path, class:'btn btn-default margin-top-xs margin-right-xs' %></li>
+          <li><%= link_to "注文履歴一覧", admin_orders_path, class:'btn btn-default margin-top-xs margin-right-xs' %></li>
+          <li><%= link_to "ジャンル一覧", new_admin_category_path, class:'btn btn-default margin-top-xs margin-right-xs' %></li>
+          <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:'btn btn-default margin-top-xs margin-right-xs' %></li>
         <% else %>
-          <li><%= link_to"About", about_path %></li>
-          <li><%= link_to "商品一覧", items_path %></li>
-          <li><%= link_to "新規登録", new_customer_registration_path %></li>
-          <li><%= link_to "ログイン", new_customer_session_path %></li>
+          <li><%= link_to "About", about_path, class:'btn btn-default margin-top-xs margin-right-xs' %></li>
+          <li><%= link_to "商品一覧", items_path, class:'btn btn-default margin-top-xs margin-right-xs' %></li>
+          <li><%= link_to "新規登録", new_customer_registration_path, class:'btn btn-default margin-top-xs margin-right-xs' %></li>
+          <li><%= link_to "ログイン", new_customer_session_path, class:'btn btn-default margin-top-xs margin-right-xs' %></li>
         <% end %>
       </ul>
     </div>
   </nav>
 </header>
+</div>

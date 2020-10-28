@@ -1,0 +1,65 @@
+<div class="row">
+  <div class="col-sm-10 col-sm-offset-1">
+    <h3 class="page-heading margin-bottom-sm"><span>&emsp;配送先登録/一覧&emsp;</h3>
+  </div>
+</div>
+
+    <%= form_with model:@delivery, local: true do |f| %>
+
+    <div class="field form-group col-sm-9">
+      <%= f.label :postcode, "郵便番号(ハイフンなし)", class: "col-sm-4 control-label" %>
+      <div class="col-sm-4">
+        <%= f.text_field :postcode, autofocus: true, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="field form-group col-sm-12">
+      <%= f.label :address, "住所", class: "col-sm-3 control-label" %>
+      <div class="col-sm-6">
+        <%= f.text_field :address, autofocus: true, autocomplete: "delivery_address", class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="field form-group col-sm-12">
+        <%= f.label :name, "宛名", class: "col-sm-3 control-label" %>
+        <div class="col-sm-3">
+          <%= f.text_field :name, autofocus: true, autocomplete: "delivery_name" , class: "form-control" %>
+        </div>
+      <div class="actions col-sm-6">
+        <%= f.submit "登録する",class: 'btn btn-success col-sm-4 col-sm-offset-6'  %>
+      </div>
+    </div>
+  <% end %>
+ </div>
+</div>
+
+<br><br><br>
+
+<div class="container">
+  <div class="row col-sm-9">
+  <table class='table table-bordered'>
+  <thead>
+    <tr class = "active">
+      <th>郵便番号</th>
+      <th>住所</th>
+      <th>宛名</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @deliveries.each do |delivery| %>
+    <tr>
+      <td class ="col-sm-2"><%= delivery.postcode %></td>
+      <td class ="col-sm-4"><%= delivery.address %></td>
+      <td class ="col-sm-2"><%= delivery.name %></td>
+      <td class ="col-sm-3">
+        <%= link_to "編集する", edit_delivery_path(delivery), class: "btn-sm btn-primary col-sm-4 col-sm-offset-1" %>
+        <%= link_to "削除する", delivery_path(delivery), method: :delete, class: "btn-sm btn-danger col-sm-4 col-sm-offset-2" %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+  </table>
+</div>
+</div>
+</div>

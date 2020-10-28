@@ -1,17 +1,24 @@
 <div class="col-md-10 col-md-offset-1">
+<%= render "layouts/error", resource: @customer %>
 <section class="customer-edit">
-  <h3><span style="background-color: gray;"><%= @customer.first_name %><%= @customer.last_name %>の会員情報編集</span></h3>
+  <h3 class="page-heading margin-bottom-xs"><span>&emsp;<%= @customer.full_name_without_space %>の会員情報編集&emsp;</span></h3>
     <%= form_with model: @customer, url: admin_customer_path(@customer), local: true do |f| %>
       <div class="row">
-        <p class="col-md-2">会員ID</p><p class="col-md-10"><%= @customer.id %></p>
+        <p class="col-md-2"><b>会員</b></p><p class="col-md-10"><%= @customer.id %></p>
       </div>
       <div class="row">
-      <p class="col-md-2">氏名</p><p class="col-md-10"><%= f.text_field :last_name %> <%= f.text_field :first_name %></p>
-      <p class="col-md-2">フリガナ</p><p class="col-md-10"><%= f.text_field :last_name_kana %> <%= f.text_field :first_name_kana %></p>
-      <p class="col-md-2">郵便番号</p><p class="col-md-10"><%= f.text_field :postcode %></p>
-      <p class="col-md-2">住所</p><p class="col-md-10"><%= f.text_field :address %></p>
-      <p class="col-md-2">メールアドレス</p><p class="col-md-10"><%= f.text_field :email %></p>
-      <p class="col-md-2">会員ステータス</p><p class="col-md-10"><%= f.radio_button :is_active, true %><%= f.label :is_active, "有効", value: true %><span>&emsp;</span><%= f.radio_button :is_active, false %><%= f.label :is_active, "退会済み", value: false %></p>
+      <p class="col-md-2"><%= f.label :last_name, "氏名", class: "control-label" %></p>
+      <p class="col-md-10 form-inline"><%= f.text_field :last_name, class: "form-control" %>&emsp;<%= f.text_field :first_name, class: "form-control" %></p>
+      <p class="col-md-2"><%= f.label :last_name_kana, "フリガナ", class: "control-label" %></p>
+      <p class="col-md-10 form-inline"><%= f.text_field :last_name_kana, class: "form-control" %>&emsp;<%= f.text_field :first_name_kana, class: "form-control" %></p>
+      <p class="col-md-2"><%= f.label :postcode, "郵便番号", class: "control-label" %></p>
+      <p class="col-md-10 form-inline"><%= f.text_field :postcode, class: "form-control" %></p>
+      <p class="col-md-2"><%= f.label :address, "住所", class: "control-label" %></p>
+      <p class="col-md-10 form-inline"><%= f.text_field :address, class: "form-control" %></p>
+      <p class="col-md-2"><%= f.label :email, "メールアドレス", class: "control-label" %></p>
+      <p class="col-md-10 form-inline"><%= f.text_field :email, class: "form-control" %></p>
+      <p class="col-md-2"><b>会員ステータス</b></p>
+      <p class="col-md-10 form-inline"><%= f.radio_button :is_active, true, class: "form-control" %><%= f.label :is_active, "有効", value: true %><span>&emsp;</span><%= f.radio_button :is_active, false, class: "form-control" %><%= f.label :is_active, "退会済み", value: false %></p>
       <tr>
         <th><%= f.submit "変更を保存する", class: "btn btn-primary" %></th>
       </tr>

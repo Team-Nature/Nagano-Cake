@@ -1,5 +1,5 @@
 class Admin::CategoriesController < ApplicationController
-  
+  before_action :authenticate_admin!
   
   def new
     @category_new = Category.new
@@ -22,8 +22,11 @@ class Admin::CategoriesController < ApplicationController
   
   def update
     @category = Category.find(params[:id])
-    @category.update(category_params)
-    redirect_to new_admin_category_path
+    if @category.update(category_params)
+      redirect_to new_admin_category_path
+    else
+      render "edit"
+    end
   end
   
   private

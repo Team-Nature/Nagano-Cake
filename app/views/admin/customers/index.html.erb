@@ -1,25 +1,28 @@
-<div class="col-md-10 col-md-offset-1">
+<div class="col-sm-10 col-sm-offset-1">
   <section class="customer-index">
-    <h3><span style="background: gray;">会員一覧</span></h3>
-      <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-          <table class="table">
-            <thead style="background: gray;">
-              <tr><th>会員ID</th><th>氏名</th><th>メールアドレス</th><th>ステータス</th></tr>
-            </thead>
-            <tbody>
-              <% @customers.each do |customer| %>
-                <tr>
-                  <td><%= customer.id %></td>
-                  <td><%= link_to customer.full_name, admin_customer_path(customer), style: "color: inherit; text-decoration: underline;" %></td>
-                  <td><%= customer.email %></td>
-                  <td><%= customer.status %></td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
+    <h3 class="page-heading margin-bottom-sm"><span>&emsp;会員一覧&emsp;</span></h3>
+    <div class="row">
+      <div class="col-sm-10 col-sm-offset-1">
+        <table class="table">
+          <thead>
+            <tr><th>会員ID</th><th>氏名</th><th>メールアドレス</th><th>ステータス</th></tr>
+          </thead>
+          <tbody>
+            <% @customers.each do |customer| %>
+              <tr>
+                <td><%= customer.id %></td>
+                <td><u><%= link_to customer.full_name_without_space, admin_customer_path(customer), style: "color: inherit;" %></u></td>
+                <td><%= customer.email %></td>
+                <td><%= customer.status %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <div class="text-center">
+          <%= paginate @customers %>
         </div>
       </div>
-  <!--kaminari / will_paginate -->
-</section>
+    </div>
+  </section>
 </div>
+
