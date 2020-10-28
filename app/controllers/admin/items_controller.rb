@@ -14,7 +14,6 @@ class Admin::ItemsController < ApplicationController
     params = item_params
     params[:category] = Category.find_by(name: item_params[:category])
     @item = Item.new(params)
-    #params[:image_id] = "IMAGE"
     if @item.save(params)
       redirect_to admin_item_path(@item[:id])
     else

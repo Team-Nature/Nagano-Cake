@@ -3,9 +3,7 @@ class Admin::OrdersController < ApplicationController
   before_action :delete_keyword_session
 
   def index
-    # @orders = Order.all.order(id: :desc)
     @orders = Order.page(params[:page]).per(10)
-
   end
 
   def today
@@ -21,6 +19,11 @@ class Admin::OrdersController < ApplicationController
   def update
     order = Order.find(params[:id])
     if order.update(order_params)
+      if order.status == "入金確認"
+        order.order_items.each do |order_item|
+          order_item.update(status: "製作待ち")
+        end
+      end
       redirect_to admin_order_path(order)
     end
   end
