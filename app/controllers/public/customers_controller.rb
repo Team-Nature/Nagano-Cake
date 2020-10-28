@@ -1,6 +1,7 @@
 class Public::CustomersController < ApplicationController
   before_action :authenticate_customer!
   before_action :delete_session
+  
   def show
     @customer = current_customer
   end
@@ -31,9 +32,7 @@ class Public::CustomersController < ApplicationController
   end
 
   private
-  def customer_params
-    params.require(:customer).permit(:last_name, :first_name, :last_name, :last_name_kana, :email, :postcode, :address, :tel, :is_active)
-  end
-
-
+    def customer_params
+      params.require(:customer).permit(:last_name, :first_name, :last_name, :last_name_kana, :email, :postcode, :address, :tel, :is_active)
+    end
 end

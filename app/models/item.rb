@@ -6,16 +6,14 @@ class Item < ApplicationRecord
   attachment :image
 
   validates :name, presence: true
-  # validates :image_id, presence: true
   validates :description, presence: true
   validates :price, numericality: true
   validates :is_active, inclusion: { in: [true, false] }
+    # validates :image_id, presence: true
 
 def price_with_tax
     (self.price * 1.1).floor
 end
-
-
 
   def status
     if is_active

@@ -1,6 +1,7 @@
 class Public::CartItemsController < ApplicationController
   before_action :authenticate_customer!
   before_action :delete_session
+
   def index
     @cart_items = current_customer.cart_items.all
   end
@@ -27,9 +28,9 @@ class Public::CartItemsController < ApplicationController
   end
 
   def destroy
-   cart_item = current_customer.cart_items.find(params[:id])
-   cart_item.delete
-   redirect_to cart_items_path
+    cart_item = current_customer.cart_items.find(params[:id])
+    cart_item.delete
+    redirect_to cart_items_path
   end
 
   def destroy_all
@@ -43,5 +44,4 @@ class Public::CartItemsController < ApplicationController
     def cart_item_params
       params.require(:cart_item).permit(:item_id, :amount)
     end
-
 end
