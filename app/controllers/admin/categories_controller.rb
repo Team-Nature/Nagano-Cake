@@ -1,5 +1,6 @@
 class Admin::CategoriesController < ApplicationController
   before_action :authenticate_admin!
+  before_action :delete_keyword_session
   
   def new
     @category_new = Category.new

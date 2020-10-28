@@ -48,4 +48,10 @@ class ApplicationController < ActionController::Base
         session.delete(:addresses)
       end
     end
+    
+    def delete_keyword_session
+      if session[:keyword].present?
+        session.delete(:keyword)
+      end
+    end
 end

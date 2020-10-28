@@ -23,6 +23,13 @@
           <li><%= link_to "注文履歴一覧", admin_orders_path, class:'btn btn-default margin-top-xs margin-right-xs' %></li>
           <li><%= link_to "ジャンル一覧", new_admin_category_path, class:'btn btn-default margin-top-xs margin-right-xs' %></li>
           <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:'btn btn-default margin-top-xs margin-right-xs' %></li>
+          <br>
+          <li class="pull-right">
+            <%= form_with scope: :search, url: admin_search_path, class: "form-inline", local: true do |f| %>
+              <%= f.text_field :keyword, placeholder: "Search", class: "form-control", style: "margin-top: 8px; padding: 5px 15px; line-height: 20px;" %>
+              <%= f.submit "SEACH!", class: "btn", style: "padding: 10px 15px; line-height 20px; margin-right: 5px; margin-top: 5px;" %>
+            <% end %>
+          </li>
         <% else %>
           <li><%= link_to "About", about_path, class:'btn btn-default margin-top-xs margin-right-xs' %></li>
           <li><%= link_to "商品一覧", items_path, class:'btn btn-default margin-top-xs margin-right-xs' %></li>
