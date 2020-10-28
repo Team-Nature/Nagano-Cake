@@ -10,7 +10,7 @@ class Public::DeliveriesController < ApplicationController
   def create
     @delivery = current_customer.deliveries.new(delivery_params)
     if @delivery.save
-      redirect_to deliveries_path, notice: "You have created book successfully."
+      redirect_to deliveries_path, notice: "発送先を作成しました。"
     else
       @deliveries = current_customer.deliveries.all
       render 'index'
@@ -30,7 +30,7 @@ class Public::DeliveriesController < ApplicationController
   def update
     @delivery = Delivery.find(params[:id])
     if @delivery.update(delivery_params)
-      redirect_to deliveries_path, notice: "You have updated user successfully."
+      redirect_to deliveries_path, notice: "発送先を更新しました。"
     else
       render "edit"
     end
