@@ -33,7 +33,7 @@
               <%= f.label :category, "ジャンル", class: "contorl-label" %>
             </div>
             <div class="col-sm-4 form-group">
-              <%= f.select :category, Category.all.map {|c| [c.name, c.id] }, { selected: @item.category.id }, { class: "form-control" } %>
+              <%= f.select :category, Category.where(is_active: true).map {|c| [c.name, c.id] }, { selected: @item.category.id }, { class: "form-control" } %>
             </div>
             <div class="col-sm-6"></div>
           </div>
