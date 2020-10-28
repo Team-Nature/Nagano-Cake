@@ -19,48 +19,43 @@ RSpec.describe "Items", type: :system do
         expect(page).to have_content "商品一覧"
       end
       it "has '全〇件'" do
-        expect(page).to have_content "(全" + Item.all.count + "件)"
+        expect(page).to have_content "(全" + Item.all.count.to_s + "件)"
       end
       it "has items" do
         Item.all.each do |item|
-          # expect(page).to have image
+          expect(page).to have_css ".image"
           expect(page).to have_content item.name
           expect(page).to have_content item.price
         end
       end
       it "has categoried" do
-        # expect(page).to have_link category1.name, href: ""
-        # expect(page).to have_link category2.name, href: ""
-        # expect(page).to have_link category3.name, href: ""
-        # expect(page).to have_link category4.name, href: ""
+        Category.all.each do |c|
+          expect(page).to have_link c.name, href: search_path(c)
+        end
+      end
+      it "leads to item-show page when clicking image" do
+        Item.all.each do |item|
+          expect(page).to have_link "", href: item_path(item)
+        end
+        click_link "", href: item_path(item1)
+        expect(current_path).to eq item_path(item1)
       end
     end
     context "on item_show_page" do
       before do
-        visit new_user_session_path
+        visit new_customer_session_path
         fill_in "customer[email]", with: customer1.email
         fill_in "customer[password]", with: customer1.password
         click_button "ログイン"
         visit item_path(item1)
       end
       it "has categoried" do
-        # expect(page).to have_link category1.name, href: ""
-        # expect(page).to have_link category2.name, href: ""
-        # expect(page).to have_link category3.name, href: ""
-        # expect(page).to have_link category4.name, href: ""
-      end
-      it "has image for an item" do
-        # expect(page).to have_ image
+        Category.all.each do |c|
+          expect(page).to have_link c.name, href: search_path(c)
+        end
       end
       it "has item name" do
         expect(page).to have_content item1.name
-      end
-      it "leads to item-show page when clicking image" do
-        Items.all.each do |item|
-          expect(page).to have_link "", href: item_path(item)
-        end
-        click_link "", href: item_path(item1)
-        expect(current_path).to eq item_path(item1)
       end
       it "has description" do
         expect(page).to have_content item1.description
@@ -69,13 +64,13 @@ RSpec.describe "Items", type: :system do
         expect(page).to have_content item1.price
       end
       it "has field to choose amount" do
-        expect(page).to have_field "item[amount]"
+        expect(page).to have_field "cart_item[amount]"
       end
       it "has button to cart" do
         expect(page).to have_button "カートに入れる"
       end
       it "puts some items in a cart" do
-        select 2, from: "item[amount]"
+        select 2, from: "cart_item[amount]"
         click_button "カートに入れる"
         expect(current_path).to eq cart_items_path
         expect(page).to have_content item1.name

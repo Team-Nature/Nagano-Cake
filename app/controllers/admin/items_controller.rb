@@ -20,7 +20,6 @@ class Admin::ItemsController < ApplicationController
     else
       render "new"
     end
-    debugger
   end
 
   def show

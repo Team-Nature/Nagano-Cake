@@ -1,10 +1,10 @@
 <div class="col-md-10 col-md-offset-1">
   <%= render "layouts/error", resource: @customer %>
   <section class="customer-edit">
-    <h3 class="page-heading margin-bottom-xs"><span>&emsp;<%= @customer.full_name_without_space %>の会員情報編集&emsp;</span></h3>
+    <h3 class="page-heading margin-bottom-xs"><span>&emsp;<%= @customer.full_name_without_space %>さんの会員情報編集&emsp;</span></h3>
       <%= form_with model: @customer, url: admin_customer_path(@customer), local: true do |f| %>
         <div class="row">
-          <p class="col-md-2"><b>会員</b></p><p class="col-md-10"><%= @customer.id %></p>
+          <p class="col-md-2"><b>会員ID</b></p><p class="col-md-10"><%= @customer.id %></p>
         </div>
         <div class="row">
         <p class="col-md-2"><%= f.label :last_name, "氏名", class: "control-label" %></p>
@@ -15,6 +15,8 @@
         <p class="col-md-10 form-inline"><%= f.text_field :postcode, class: "form-control" %></p>
         <p class="col-md-2"><%= f.label :address, "住所", class: "control-label" %></p>
         <p class="col-md-10 form-inline"><%= f.text_field :address, class: "form-control" %></p>
+        <p class="col-md-2"><%= f.label :tel, "電話番号", class: "control-label" %></p>
+        <p class="col-md-10 form-inline"><%= f.text_field :tel, class: "form-control" %></p>
         <p class="col-md-2"><%= f.label :email, "メールアドレス", class: "control-label" %></p>
         <p class="col-md-10 form-inline"><%= f.text_field :email, class: "form-control" %></p>
         <p class="col-md-2"><b>会員ステータス</b></p>
