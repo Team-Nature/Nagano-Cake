@@ -1,24 +1,91 @@
-# README
+# ながのCAKEへようこそ！
+![naganocake](https://user-images.githubusercontent.com/68266791/97358657-e93fa200-18de-11eb-991e-ca56ff7a12c9.png)
+⻑野県にある⼩さな洋菓⼦店「ながのCAKE」の商品を通販するためのECサイトです。
+url：https://github.com/Team-Nature/nagano-cake
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 簡単な説明
 
-Things you may want to cover:
+元々近隣住⺠が顧客だったが、昨年始めたInstagramから⼈気となり、全国から注⽂が来る ようになった。 InstagramのDMやメールで通販の注⽂を受けていたが、情報管理が煩雑になってきたた め、管理機能を含んだ通販サイトを開設。
 
-* Ruby version
 
-* System dependencies
+## 使用しているＧＥＭなど
+**開発環境**
+cloud9
 
-* Configuration
+**rails**    
+ver5.2.4'
 
-* Database creation
+**refile**
+商品の画像を配置するため
 
-* Database initialization
+**refile-mini_magick**
+商品の画像を配置するため
 
-* How to run the test suite
+**bootstrap-sass**
+サイトデザインを整えるため
 
-* Services (job queues, cache servers, search engines, etc.)
+**jquery-rails**
+bootstrap使用のため
 
-* Deployment instructions
+**devise**
+ログイン機能の実装のため
 
-* ...
+**rspec**
+テストを行うため
+
+**faker**
+rspec時のデータ作成のため
+
+**factory_bot_rails**
+rspec時のデータ作成のため
+
+**kaminari**
+ページネーションの実施
+
+## 使い方（会員側）
+
+1.  **新規登録**でアカウントを作ってください。
+（メールアドレスとパスワードはメモしておいてください。ログインで使用します。）
+
+2.  **商品一覧**から好きな商品を選び、個数を選択しカートに入れてください。
+まだ買い物を続ける場合「**買い物を続ける**」を押し買い物を続けてください
+
+3. 　お買い求めの商品をすべてカートに入れたら、「**情報入力に進む**」を押してください。
+
+4. 注文情報を入力し、注文情報確認で間違いがないのを確認してから「**購入を確定する**」
+ボタンを押してください。
+
+5. 商品の配送状況は「**マイページ**」から注文履歴の「**一覧を見る**」ボタンから確認できます。
+
+## 使い方（店側）
+**会員の注⽂確定後、商品の製作から発送までのフロー**
+ 1. 入金確認できた注文のステータスを、「入金確認」に変更する。
+
+ 2. 製作着手する商品の製作ステータスを「製作中」に変更する
+　　　　　　　　　　　　　　　　　　　　　
+ 3. 完成した商品の製作ステータスを「製作完了」に変更する。
+（２．３.）注文に紐付く商品数分行う
+ 
+ 4. 注文ステータスが「発送準備中」の注文商品を梱包する。
+
+ 5. 発送したら「発送済み」に更新する
+
+
+
+## その他
+要件定義書：https://s3-ap-northeast-1.amazonaws.com/wals/uploads/1147/rdd.pdf
+
+データべース設計：https://docs.google.com/spreadsheets/d/1iq0DkKzJ1OaWnAyVA9TtPO5-8mX09Su5dgN3yWWCwyo/edit#gid=264551502
+
+アプリケーション詳細設計：https://docs.google.com/spreadsheets/d/12A9MBv-UAR7dDoV9M3q495CIIi-iR5R4NM86dL5AMeU/edit#gid=724604413
+
+
+
+
+## 作者
+チームネイチャー
+岸野優樹優（きっしー）
+河原翼（つばさ）
+林孝憲（りん）
+
+チームネイチャーは全員が名字に自然を表す漢字が入っていたのでネイチャーになりました。
