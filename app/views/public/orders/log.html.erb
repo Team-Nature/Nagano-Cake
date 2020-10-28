@@ -15,7 +15,7 @@
 							<%= order_item.item.name %>
 					  </td>
 			      <td>
-					    <%= order_item.item.price.to_s(:delimited) %>
+					    <%= order_item.item.price_with_tax.to_s(:delimited) %>
 					  </td>
 					  <td>
 					    <%= order_item.amount %>

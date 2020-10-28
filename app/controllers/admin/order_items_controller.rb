@@ -6,6 +6,9 @@ class Admin::OrderItemsController < ApplicationController
     order_item = OrderItem.find(params[:id])
     order = order_item.order
     if order_item.update(order_item_params)
+      unless order.order_items.any? { |order_item| order_item.status != "製作完了" }
+        order.update(status: "発送準備中")
+      end
       redirect_to admin_order_path(order)
     end
   end
