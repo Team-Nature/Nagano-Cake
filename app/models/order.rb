@@ -45,4 +45,4 @@ class Order < ApplicationRecord
     end
     count
   end
-end cd
+end

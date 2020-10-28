@@ -1,12 +1,12 @@
 <div class="container">
   <div class="row">
+    <% if notice.present? %>
+      <div class="notice"><%= notice %></div>
+    <% end %>
+    <% if alert.present? %>
+      <div class="alert"><%= alert %></div>
+    <% end %>
     <div class="col-sm-offset-1 col-sm-10">
-      <% if notice.present? %>
-        <p><%= notice %></p>
-      <% end %>
-      <% if alert.present? %>
-        <p><%= alert %></p>
-      <% end %>
       <h3 class="page-heading"><span>&emsp;管理者ログイン&emsp;</span></h3>
       <br>
       <%= form_with model: @admin, url: session_path(resource), local: true do |f|%>
