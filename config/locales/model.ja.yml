@@ -49,7 +49,7 @@ ja:
         price: "販売時価格(税込)"
         amount: "個数"
         status: "製作ステータス"
-      deliver:
+      delivery:
         customer_id: "会員ID"
         postcode: "郵便番号"
         address: "住所"

@@ -6,6 +6,12 @@
     
 <div class="item-show margin-top-sm">
   <div class="col-sm-10">
+    <% if notice.present? %>
+      <div class="notice"><%= notice %></div>
+    <% end %>
+    <% if alert.present? %>
+      <div class="alert"><%= alert %></div>
+    <% end %>
     <div class="row">
       <div class="col-sm-6">
         <p><%= attachment_image_tag(@item, :image, size: "360x240", fallback: "/assets/images/noimage.jpg") %></p>
