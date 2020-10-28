@@ -1,5 +1,19 @@
 FactoryBot.define do 
   factory :customer1, class: Customer do
+    last_name { "市" }
+    first_name { "那" }
+    last_name_kana { "いち" }
+    first_name_kana { "な" }
+    email { "ichi@com" }
+    password { "testtest" }
+    password_confirmation { "testtest" }
+    postcode { "1111111" }
+    address { "滋賀県" }
+    tel { "01234567890" }
+    is_active { true }
+  end
+  
+  factory :customer4, class: Customer do
     last_name { "岸" }
     first_name { "優" }
     last_name_kana { "きし" }
