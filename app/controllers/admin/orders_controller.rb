@@ -3,7 +3,7 @@ class Admin::OrdersController < ApplicationController
   before_action :delete_keyword_session
 
   def index
-    @orders = Order.page(params[:page]).per(10)
+    @orders = Order.order(id: :desc).page(params[:page]).per(10)
   end
 
   def today
