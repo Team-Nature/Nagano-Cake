@@ -7,7 +7,13 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
+      <% if customer_signed_in? %>
       <h1><%= link_to "LOGO", root_path, class: "navbar-left navbar-brand font-size-30 box1 margin-bottom-xs" %></h1>
+      <% elsif admin_signed_in? %>
+      <h1><%= link_to "LOGO", admin_top_path, class: "navbar-left navbar-brand font-size-30 box1 margin-bottom-xs" %></h1>
+      <% else %>
+      <h1><%= link_to "LOGO", root_path, class: "navbar-left navbar-brand font-size-30 box1 margin-bottom-xs" %></h1>
+      <% end %>
     </div>
     <div class="collapse navbar-collapse" id="navbar-header">
       <ul class="nav navbar-nav navbar-right">
