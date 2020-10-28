@@ -30,7 +30,7 @@ ja:
       item:
         category: "ジャンル"
         name: "名前"
-        image_id: "イメージ"
+        image: "イメージ"
         description: "説明文"
         price: "税抜価格"
         is_active: "販売状況"

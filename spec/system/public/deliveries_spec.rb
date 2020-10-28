@@ -38,9 +38,9 @@ RSpec.describe "Deliveries", type: :system do
         fill_in "delivery[name]", with: "HKT"
         click_button "登録する"
         expect(current_path).to eq deliveries_path
-        # expect(page).to have_content "9999999"
-        # expect(page).to have_content "北海道札幌市"
-        # expect(page).to have_content "HKT"
+        expect(page).to have_content "9999999"
+        expect(page).to have_content "北海道札幌市"
+        expect(page).to have_content "HKT"
       end
       it "has table-heading for delivery info" do
         expect(page).to have_content "郵便番号"
@@ -57,8 +57,7 @@ RSpec.describe "Deliveries", type: :system do
         end
       end
       it "succeeds to delete A delvery" do
-        delivery = customer1.deliveries.first
-        click_link "削除する", href: delivery_path(delivery)
+        click_link "削除する", href: delivery_path(delivery1)
         expect(current_page).to eq deliveries_path
         expect(page).to have_no_content delivery.postcode
         expect(page).to have_no_content delivery_address
@@ -67,23 +66,22 @@ RSpec.describe "Deliveries", type: :system do
     end
     context "on delivery edit page" do
       before do
-        @delivery = customer1.deliveries.first
-        visit delivery_path(@delivery)
+        visit edit_delivery_path(delivery1)
       end
       it "has '配送先編集'" do
         expect(page).to have_content "配送先編集"
       end
       it "has postcode field" do
         expect(page).to have_content "郵便番号(ハイフンなし)"
-        expect(page).to have_field "delivery[postcode]", with: @delivery.postcode
+        expect(page).to have_field "delivery[postcode]", with: delivery1.postcode
       end
       it "has address field" do
         expect(page).to have_content "住所"
-        expect(page).to have_field "delivery[address]", with: @delivery.address
+        expect(page).to have_field "delivery[address]", with: delivery1.address
       end
       it "has name field" do
         expect(page).to have_content "宛名"
-        expect(page).to have_field "delivery[name]", with: @delivery.name
+        expect(page).to have_field "delivery[name]", with: delivery1.name
       end
       it "has button to update" do
         expect(page).to have_button "編集する"
@@ -93,7 +91,7 @@ RSpec.describe "Deliveries", type: :system do
         fill_in "delivery[address]", with: "滋賀県大津市"
         fill_in "delivery[name]", with: "BCC"
         click_button "編集する"
-        expect(current_page).to eq deliveries_path
+        expect(current_path).to eq deliveries_path
         expect(page).to have_content "1010101"
         expect(page).to have_content "滋賀県大津市"
         expect(page).to have_content "BCC"
@@ -101,8 +99,7 @@ RSpec.describe "Deliveries", type: :system do
       it "fails to edit" do
         fill_in "delivery[postcode]", with: ""
         click_button "編集する"
-        expect(current_path).to eq edit_delivery_path(@delivery)
-        expect(page).to have_content "error"
+        expect(page).to have_content "エラー"
       end
     end
   end

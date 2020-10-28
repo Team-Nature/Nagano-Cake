@@ -23,7 +23,7 @@ RSpec.describe "Orders", type: :system do
         expect(page).to have_content "注文情報入力"
       end
       it "has radio-button for how_to_pay" do
-        expect(page).to have_content "支払方法"
+        expect(page).to have_content "支払い方法"
         expect(page).to have_field "order[how_to_pay]", with: "クレジットカード"
         expect(page).to have_field "order[how_to_pay]", with: "銀行振込" 
       end
@@ -37,21 +37,16 @@ RSpec.describe "Orders", type: :system do
       it "succeeds to go to order-log" do
         choose "クレジットカード"
         choose "ご自身の住所"
-        click_button "確認画面に進む"
-        expect(current_path).to eq orders_thanks_path
+        click_button "確認画面へ進む"
+        expect(current_path).to eq log_path
       end
     end
     context "on order-log page" do
       before do
-        @order = customer1.orders.new(
-          deliver_postcode: customer1.postcode,
-          deliver_address: customer1.address,
-          deliver_name: customer1.name,
-          deliver_fee: 800
-        )
-        @order.set_order_items
-        @order.total_price = @order.set_total_price
-        visit orders_log_path
+        visit new_order_path
+        choose "クレジットカード"
+        choose "ご自身の住所"
+        click_button "確認画面へ進む"
       end
       it "has '注文情報確認'" do
         expect(page).to have_content "注文情報確認"
@@ -66,37 +61,37 @@ RSpec.describe "Orders", type: :system do
         expect(page).to have_content "請求金額"
       end
       it "has info for order_items" do
-        @order.order_items.each do |order_item|
-          expect(page).to have_content order_item.item.name
-          expect(page).to have_contemnt order_item.price
-          expect(page).to have_content order_item.amount
-          expect(page).to have_content order_item.subtotal
+        customer1.cart_items.each do |cart_item|
+          expect(page).to have_content cart_item.item.name
+          expect(page).to have_content cart_item.item.price
+          expect(page).to have_content cart_item.amount
+          expect(page).to have_content cart_item.subtotal.to_s(:delimited)
         end
-        expect(page).to have_content @order.deliver_fee
-        expect(page).to have_content @order.total_price
-        expect(page).to have_content @order.whole_total_price
+        expect(page).to have_content "800"
+        expect(page).to have_content (@cart_item1.subtotal + @cart_item2.subtotal).to_s(:delimited)
+        expect(page).to have_content (@cart_item1.subtotal + @cart_item2.subtotal + 800).to_s(:delimited)
       end
       it "has info for how_to_pay" do
         expect(page).to have_content "支払方法"
-        expect(page).to have_content @order.how_to_pay
+        expect(page).to have_content "クレジットカード"
       end
       it "has info for where to deliver" do
         expect(page).to have_content "お届け先"
-        expect(page).to have_content @order.deliver_postcode
-        expect(page).to have_content @order.deliver_address
-        expect(page).to have_content @order.deliver_name
+        expect(page).to have_content customer1.postcode
+        expect(page).to have_content customer1.address
+        expect(page).to have_content customer1.full_name
       end
       it "has button '購入を確定する'" do
         expect(page).to have_button "購入を確定する"
       end
       it "succeeds to make a new order" do
         click_button "購入を確定する"
-        expect(current_path).to eq orders_thanks_path
+        expect(current_path).to eq thanks_path
       end
     end
     context "on order-thanks page" do
       before do 
-        orders_thanks_page
+        visit thanks_path
       end
       it "has 'ご購入ありがとうございました！" do
         expect(page).to have_content "ご購入ありがとうございました！"
@@ -104,6 +99,10 @@ RSpec.describe "Orders", type: :system do
     end
     context "on order-index page" do
       before do 
+        @order = customer1.orders.new(deliver_postcode: customer1.postcode, deliver_address: customer1.address, deliver_name: customer1.full_name)
+        @order.set_order_items
+        @order.get_total_price
+        @order.save
         visit orders_path
       end
       it "has '注文履歴一覧'" do
@@ -122,13 +121,13 @@ RSpec.describe "Orders", type: :system do
           expect(page).to have_content order.created_at.strftime("%Y/%m/%d")
           expect(page).to have_content order.deliver_postcode
           expect(page).to have_content order.deliver_address
-          expect(page).to haev_content order.deliver_name
+          expect(page).to have_content order.deliver_name
           order.order_items.each do |order_item|
             expect(page).to have_content order_item.item.name
           end
-          expect(page).to have_content order.total_price
+          expect(page).to have_content order.get_whole_total_price.to_s(:delimited)
           expect(page).to have_content order.status
-          expect(page).to have_link "表示する", order_path(order)
+          expect(page).to have_link "表示する", href: order_path(order)
         end
       end
       context "on order-show page" do
@@ -164,7 +163,7 @@ RSpec.describe "Orders", type: :system do
         end
         it "has total_price" do
           expect(page).to have_content "商品合計"
-          expect(page).to have_content @order.get_total_price
+          expect(page).to have_content @order.get_total_price.to_s(:delimited)
         end
         it "has deliver_fee" do
           expect(page).to have_content "配送料"
@@ -172,7 +171,7 @@ RSpec.describe "Orders", type: :system do
         end
         it "has whole_total_price" do
           expect(page).to have_content "ご請求額"
-          expect(page).to have_content @order.get_whole_total_price
+          expect(page).to have_content @order.get_whole_total_price.to_s(:delimited)
         end
         it "has '注文内容'" do
           expect(page).to have_content "注文内容"

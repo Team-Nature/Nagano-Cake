@@ -1,7 +1,7 @@
 class Category < ApplicationRecord
   has_many :items
     
-  validates :name, presence: { message: "は必須項目です。" }
+  validates :name, presence: true
   validates :is_active, inclusion: { in: [true, false] }
     
   def status
