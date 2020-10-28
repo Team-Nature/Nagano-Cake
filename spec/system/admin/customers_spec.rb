@@ -12,7 +12,7 @@ RSpec.describe "AdminCustomers", type: :system do
     end
     context "on admin_customer_index page" do
       before do
-        visit admin_customer_path(customer1)
+        visit admin_customers_path
       end
       it "has '会員一覧'" do
         expect(page).to have_content "会員一覧"
@@ -42,7 +42,7 @@ RSpec.describe "AdminCustomers", type: :system do
       it "has heading for customer information" do
         expect(page).to have_content "顧客ID"
         expect(page).to have_content "氏名"
-        exepct(page).to have_content "フリガナ"
+        expct(page).to have_content "フリガナ"
         expect(page).to have_content "郵便番号"
         expect(page).to have_content "住所"
         expect(page).to have_content "電話番号"

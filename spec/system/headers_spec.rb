@@ -32,7 +32,7 @@ RSpec.describe "Headers", type: :system do
         expect(page).to have_content "ようこそ、#{customer1.full_name}さん！"
       end
       it "has 'マイページ'" do
-        expect(page).to have_link "マイページ", href: customer_path
+        expect(page).to have_link "マイページ", href: customers_path
       end
       it "has カート'" do
         expect(page).to have_link "カート", href: cart_items_path
@@ -58,7 +58,7 @@ RSpec.describe "Headers", type: :system do
         expect(page).to have_link "注文履歴一覧", href: admin_orders_path
       end
       it "has 'ジャンル一覧'" do
-        expect(page).to have_link "ジャンル一覧", href: admin_categories_path
+        expect(page).to have_link "ジャンル一覧", href: new_admin_category_path
       end
       it "has ログアウト" do
         expect(page).to have_link "ログアウト", href: destroy_admin_session_path

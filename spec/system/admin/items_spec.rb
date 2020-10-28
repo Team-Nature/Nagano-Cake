@@ -34,7 +34,7 @@ RSpec.describe "Items", type: :system do
         end
       end
       it "has button to go to add_item_page" do
-        # expect(page).to have_link "", href: new_admin_item_path
+        expect(page).to have_link "", href: new_admin_item_path
       end
     end
     context "on new_item page" do
@@ -70,7 +70,7 @@ RSpec.describe "Items", type: :system do
         expect(page).to have_field "item[status]"
       end
       it "succeeds to make a new item" do
-        # select item image
+        attach_file "", "#{ Rails.root }/"
         fill_in "item[name]", with: "チョコケーキ"
         fill_in "item[description]", with: "新作です！"
         select "ケーキ", from: "item[category]"
